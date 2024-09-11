@@ -38,6 +38,7 @@ builder.Services.AddAuthorizationCore();
 
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<IDataTypeService, DataTypeService>();
+builder.Services.AddScoped<IStatusService, StatusService>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
