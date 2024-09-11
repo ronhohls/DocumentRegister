@@ -14,20 +14,24 @@ namespace DocumentRegister.Infrastructure.Persistence.Context
             _userService = userService;
         }
         public DbSet<DataType> DataTypes { get; set; }
-		//public DbSet<SegmentData> SegmentData { get; set; }
-		//public DbSet<DeptDocNumStructure> DeptDocNumStructures { get; set; }
-		//public DbSet<Document> Documents { get; set; }
-		//public DbSet<Status> Status { get; set; }
-		//public DbSet<MediaType> MediaTypes { get; set; }
-		//public DbSet<DocumentSegment> DocumentSegments { get; set; }
-		//public DbSet<SegmentCategory> SegmentCategories { get; set; }
+        public DbSet<Status> Statuses { get; set; }
+        //public DbSet<SegmentData> SegmentData { get; set; }
+        //public DbSet<DeptDocNumStructure> DeptDocNumStructures { get; set; }
+        //public DbSet<Document> Documents { get; set; }
 
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //public DbSet<MediaType> MediaTypes { get; set; }
+        //public DbSet<DocumentSegment> DocumentSegments { get; set; }
+        //public DbSet<SegmentCategory> SegmentCategories { get; set; }
+
+
+        //apply configurations for entities
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(DocumentRegisterDbContext).Assembly);
             base.OnModelCreating(modelBuilder);
         }
 
+        //adds meta for all entities
 		public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
 		{
 			foreach (var entry in base.ChangeTracker.Entries<BaseEntity>()

@@ -1,9 +1,10 @@
-﻿using DocumentRegister.Application.Repositories;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using DocumentRegister.Application.Contracts.Persistence;
 using DocumentRegister.Infrastructure.Persistence.Context;
+using DocumentRegister.Infrastructure.Persistence.Repositories;
+using DocumentRegister.Application.Persistence.Repositories;
 
 namespace DocumentRegister.Infrastructure
 {
@@ -19,8 +20,9 @@ namespace DocumentRegister.Infrastructure
 
 			services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 			services.AddScoped<IDataTypeRepository, DataTypeRepository>();
+			services.AddScoped<IStatusRepository, StatusRepository>();
 
-			return services;
+            return services;
 		}
 	}
 }

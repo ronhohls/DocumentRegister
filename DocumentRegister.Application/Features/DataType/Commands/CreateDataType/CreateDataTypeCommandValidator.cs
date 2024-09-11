@@ -3,7 +3,7 @@ using DocumentRegister.Application.Features.DataType.Commands.CreateDataType;
 using DocumentRegister.Application.Features.DataType.Commands.DeleteDataType;
 using FluentValidation;
 
-namespace DocumentRegister.Application.Features.DataType.Commands
+namespace DocumentRegister.Application.Features.DataType.Commands.CreateDataType
 {
     public class CreateDataTypeCommandValidator : AbstractValidator<CreateDataTypeCommand>
 	{
