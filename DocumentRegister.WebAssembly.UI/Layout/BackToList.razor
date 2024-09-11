@@ -1,0 +1,17 @@
+﻿@inject NavigationManager NavigationManager
+
+<button class="btn btn-outline-dark btn-block" @onclick="NavigateToList">
+	<span class="pointer-event oi-arrow-left"></span>
+	Back to List
+</button>
+
+@code {
+	[Parameter]
+	public string Target { get; set; }
+
+	void NavigateToList()
+	{
+		NavigationManager.NavigateTo(Target);
+	}
+	
+}

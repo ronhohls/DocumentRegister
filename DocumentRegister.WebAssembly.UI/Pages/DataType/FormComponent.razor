@@ -1,0 +1,18 @@
+﻿<EditForm Model="@DataType" OnValidSubmit="@OnValidSubmit">
+	<DataAnnotationsValidator />
+	<ValidationSummary />
+	<fieldset disabled="@Disabled">
+		<div class="form-group">
+			<label>Name:</label>
+			<div>
+				<InputText @bind-Value="DataType.Name" class="form-control" />
+				<ValidationMessage For="@(() => DataType.Name)" />
+			</div>
+		</div>
+	</fieldset>
+	@if (!Disabled)
+	{
+		<button type="submit" class="btn btn-success btn-block">@ButtonText</button>
+	}
+	<BackToList Target="datatypes"/>
+</EditForm>

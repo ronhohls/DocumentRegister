@@ -24,21 +24,27 @@ namespace DocumentRegister.Core.Entities
 
         [ForeignKey("DocumentSegment")]
         public required int DocumentSegment1Id { get; set; }
+        public virtual DocumentSegment? DocumentSegment1 { get; set; }
 
         [ForeignKey("DocumentSegment")]
         public required int DocumentSegment2Id { get; set; }
+        public virtual DocumentSegment? DocumentSegment2 { get; set; }
 
         [ForeignKey("DocumentSegment")]
         public required int DocumentSegment3Id { get; set; }
+        public virtual DocumentSegment? DocumentSegment3 { get; set; }
 
         [ForeignKey("DocumentSegment")]
         public int DocumentSegment4Id { get; set; }
+        public virtual DocumentSegment? DocumentSegment4 { get; set; }
 
         [ForeignKey("DocumentSegment")]
         public int DocumentSegment5Id { get; set; }
+        public virtual DocumentSegment? DocumentSegment5 { get; set; }
 
         [ForeignKey("DocumentSegment")]
         public int DocumentSegment6Id { get; set; }
+        public virtual DocumentSegment? DocumentSegment6 { get; set; }
 
         [ForeignKey("Status")]
         public int StatusId { get; set; }

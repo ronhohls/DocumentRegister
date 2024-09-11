@@ -1,0 +1,7 @@
+﻿@page "/datatypes/edit/{id:int}"
+@attribute [Authorize(Roles = "Administrator")]
+
+<h3>Edit Data Type</h3>
+
+<FormComponent ButtonText="Update" DataType="dataType" Disabled="false" OnValidSubmit="@EditDataType" />
+
