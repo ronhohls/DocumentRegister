@@ -361,3 +361,10 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/DocumentRegister.Core/Entities/Status.cs
+/DocumentRegister.Core/DTOs/Status/StatusDetailsDto.cs
+/DocumentRegister.Core/DTOs/Status/StatusesDto.cs
+/DocumentRegister.Infrastructure/DatabaseDependencyInjection.cs
+/DocumentRegister.Infrastructure/Persistence/Configurations/StatusConfiguration.cs
+/DocumentRegister.Infrastructure/Persistence/Repositories/StatusRepository.cs
+/DocumentRegister.Core/Entities/Status.cs
