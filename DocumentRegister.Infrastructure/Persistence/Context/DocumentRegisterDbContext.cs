@@ -15,11 +15,11 @@ namespace DocumentRegister.Infrastructure.Persistence.Context
         }
         public DbSet<DataType> DataTypes { get; set; }
         public DbSet<Status> Statuses { get; set; }
-        //public DbSet<SegmentData> SegmentData { get; set; }
-        //public DbSet<DeptDocNumStructure> DeptDocNumStructures { get; set; }
-        //public DbSet<Document> Documents { get; set; }
+		public DbSet<MediaType> MediaTypes { get; set; }
 
-        //public DbSet<MediaType> MediaTypes { get; set; }
+		//public DbSet<SegmentData> SegmentData { get; set; }
+		//public DbSet<DeptDocNumStructure> DeptDocNumStructures { get; set; }
+		//public DbSet<Document> Documents { get; set; }
         //public DbSet<DocumentSegment> DocumentSegments { get; set; }
         //public DbSet<SegmentCategory> SegmentCategories { get; set; }
 

@@ -39,6 +39,7 @@ builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<IDataTypeService, DataTypeService>();
 builder.Services.AddScoped<IStatusService, StatusService>();
+builder.Services.AddScoped<IMediaTypeService, MediaTypeService>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

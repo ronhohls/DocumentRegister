@@ -20,7 +20,7 @@ namespace DocumentRegister.WebAssembly.UI.Pages.DataType
 
 		protected override async Task OnParametersSetAsync()
 		{
-			dataType = await DataTypeService.GetDataTypeById(id);
+            dataType = await DataTypeService.GetDataTypeById(id);
 		}
 
 		async Task EditDataType()

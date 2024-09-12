@@ -1,7 +1,7 @@
 ﻿@page "/statuses/edit/{id:int}"
 @attribute [Authorize(Roles = "Administrator")]
 
-<h3>Edit Data Type</h3>
+<h3>Edit Status</h3>
 
 <StatusFormComponent ButtonText="Update" StatusModel="status" Disabled="false" OnValidSubmit="@EditStatus" />
 

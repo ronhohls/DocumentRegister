@@ -23,7 +23,7 @@ namespace DocumentRegister.Application.Features.Status.Commands.CreateStatus
 
 			if (validationResult.Errors.Any())
 			{
-				throw new BadRequestException("Invalid Data Type", validationResult);
+				throw new BadRequestException("Invalid Status", validationResult);
 			}
 
 			var status = _mapper.Map<DocumentRegister.Core.Entities.Status>(request);

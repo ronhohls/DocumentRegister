@@ -10,7 +10,7 @@ namespace DocumentRegister.WebAssembly.UI.Pages.DataType
 		[Inject]
 		NavigationManager navigationManager { get; set; }
 		[Inject]
-		IDataTypeService dataService { get; set; }
+		IDataTypeService dataTypeService { get; set; }
 		[Inject]
 		IToastService toastService { get; set; }
 		public string Message { get; private set; }
@@ -18,10 +18,10 @@ namespace DocumentRegister.WebAssembly.UI.Pages.DataType
 
 		async Task CreateDataType()
 		{
-			var response = await dataService.CreateDataType(dataType);
+			var response = await dataTypeService.CreateDataType(dataType);
 			if (response.Success)
 			{
-				toastService.ShowSuccess("Leave Type created Successfully");
+				toastService.ShowSuccess("Data Type created Successfully");
 				toastService.ShowToast(ToastLevel.Info, "Test");
 				navigationManager.NavigateTo("datatypes");
 

@@ -1,0 +1,15 @@
+﻿@page "/mediatypes/create"
+
+<h3>Create Media Type</h3>
+
+@if (string.IsNullOrEmpty(Message) == false)
+{
+	<div class="alert alert-danger" role="alert">
+		@Message
+	</div>
+}
+
+<MediaTypeFormComponent ButtonText="Create" MediaTypeModel="mediaType" OnValidSubmit="@CreateMediaType" />
+
+
+

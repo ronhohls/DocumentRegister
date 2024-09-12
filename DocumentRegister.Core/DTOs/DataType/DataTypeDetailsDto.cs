@@ -2,6 +2,7 @@
 {
 	public class DataTypeDetailsDto
 	{
+        public int DataTypeId { get; set; }
         public string Name { get; set; }
     }
 }

@@ -55,9 +55,48 @@ namespace DocumentRegister.Infrastructure.Migrations
                         new
                         {
                             DataTypeId = 1,
-                            DateCreated = new DateTime(2024, 9, 11, 20, 55, 3, 889, DateTimeKind.Local).AddTicks(6653),
-                            DateModified = new DateTime(2024, 9, 11, 20, 55, 3, 889, DateTimeKind.Local).AddTicks(6667),
+                            DateCreated = new DateTime(2024, 9, 12, 9, 41, 30, 538, DateTimeKind.Local).AddTicks(7262),
+                            DateModified = new DateTime(2024, 9, 12, 9, 41, 30, 538, DateTimeKind.Local).AddTicks(7270),
                             Name = "TestValue"
+                        });
+                });
+
+            modelBuilder.Entity("DocumentRegister.Core.Entities.MediaType", b =>
+                {
+                    b.Property<int>("MediaTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MediaTypeId"));
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MediaTypeId");
+
+                    b.ToTable("MediaTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            MediaTypeId = 1,
+                            DateCreated = new DateTime(2024, 9, 12, 9, 41, 30, 538, DateTimeKind.Local).AddTicks(8448),
+                            DateModified = new DateTime(2024, 9, 12, 9, 41, 30, 538, DateTimeKind.Local).AddTicks(8451),
+                            Description = "TestValue"
                         });
                 });
 
@@ -94,8 +133,8 @@ namespace DocumentRegister.Infrastructure.Migrations
                         new
                         {
                             StatusId = 1,
-                            DateCreated = new DateTime(2024, 9, 11, 20, 55, 3, 889, DateTimeKind.Local).AddTicks(7699),
-                            DateModified = new DateTime(2024, 9, 11, 20, 55, 3, 889, DateTimeKind.Local).AddTicks(7701),
+                            DateCreated = new DateTime(2024, 9, 12, 9, 41, 30, 538, DateTimeKind.Local).AddTicks(9338),
+                            DateModified = new DateTime(2024, 9, 12, 9, 41, 30, 538, DateTimeKind.Local).AddTicks(9341),
                             Description = "TestValue"
                         });
                 });

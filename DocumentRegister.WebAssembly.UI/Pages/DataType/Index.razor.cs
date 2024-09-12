@@ -2,6 +2,7 @@
 using DocumentRegister.WebAssembly.UI.Contracts;
 using DocumentRegister.WebAssembly.UI.Models.DataType;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 
 namespace DocumentRegister.WebAssembly.UI.Pages.DataType
 {
@@ -22,7 +23,6 @@ namespace DocumentRegister.WebAssembly.UI.Pages.DataType
 
         protected void CreateDataType()
         {
-            Console.WriteLine("CreateDataType");
             NavigationManager.NavigateTo("/datatypes/create/");
         }
 
@@ -33,8 +33,6 @@ namespace DocumentRegister.WebAssembly.UI.Pages.DataType
 
         protected void DetailsDataType(int id)
         {
-            Logger.LogWarning("details");
-            System.Console.WriteLine("details");
 			NavigationManager.NavigateTo($"/datatypes/details/{id}");
         }
 
@@ -55,7 +53,6 @@ namespace DocumentRegister.WebAssembly.UI.Pages.DataType
         protected override async Task OnInitializedAsync()
         {
             DataTypes = await DataTypeService.GetDataTypes();
-			System.Console.WriteLine("on initialized");
 		}
     }
 }

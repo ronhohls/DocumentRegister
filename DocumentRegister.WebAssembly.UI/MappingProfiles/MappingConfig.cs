@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DocumentRegister.WebAssembly.UI.Models;
 using DocumentRegister.WebAssembly.UI.Models.DataType;
+using DocumentRegister.WebAssembly.UI.Models.MediaType;
 using DocumentRegister.WebAssembly.UI.Models.Status;
 using DocumentRegister.WebAssembly.UI.Services.Base;
 
@@ -20,7 +21,12 @@ namespace DocumentRegister.WebAssembly.UI.MappingProfiles
 			CreateMap<CreateStatusCommand, StatusVM>().ReverseMap();
 			CreateMap<UpdateStatusCommand, StatusVM>().ReverseMap();
 
-			//CreateMap<EmployeeVM, Employee>().ReverseMap();
-		}
+            CreateMap<MediaTypesDto, MediaTypeVM>().ReverseMap();
+            CreateMap<MediaTypeDetailsDto, MediaTypeVM>().ReverseMap();
+            CreateMap<CreateMediaTypeCommand, MediaTypeVM>().ReverseMap();
+            CreateMap<UpdateMediaTypeCommand, MediaTypeVM>().ReverseMap();
+
+            //CreateMap<EmployeeVM, Employee>().ReverseMap();
+        }
 	}
 }

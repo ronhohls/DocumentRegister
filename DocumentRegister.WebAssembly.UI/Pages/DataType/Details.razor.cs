@@ -16,7 +16,7 @@ namespace DocumentRegister.WebAssembly.UI.Pages.DataType
 
 		protected async override Task OnParametersSetAsync()
 		{
-			dataType = await dataTypeService.GetDataTypeById(id);
+            dataType = await dataTypeService.GetDataTypeById(id);
 		}
 	}
 }

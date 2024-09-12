@@ -23,18 +23,18 @@ namespace DocumentRegister.Application.Features.Status.Commands.UpdateStatus
 
 			if (validationResult.Errors.Any())
 			{
-				throw new BadRequestException("Invalid Data Type", validationResult);
+				throw new BadRequestException("Invalid Status", validationResult);
 			}
 
-			var Status = await _statusRepository.GetByIdAsync(request.StatusId);
+			var status = await _statusRepository.GetByIdAsync(request.StatusId);
 
-			if (Status == null)
+			if (status == null)
 			{
-				throw new NotFoundException(nameof(Status), request.StatusId);
+				throw new NotFoundException(nameof(status), request.StatusId);
 			}
 
-			_mapper.Map(request, Status);
-			await _statusRepository.UpdateAsync(Status);
+			_mapper.Map(request, status);
+			await _statusRepository.UpdateAsync(status);
 
 			return Unit.Value;
 		}

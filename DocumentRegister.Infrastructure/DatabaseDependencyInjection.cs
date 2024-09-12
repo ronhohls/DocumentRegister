@@ -21,6 +21,7 @@ namespace DocumentRegister.Infrastructure
 			services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 			services.AddScoped<IDataTypeRepository, DataTypeRepository>();
 			services.AddScoped<IStatusRepository, StatusRepository>();
+			services.AddScoped<IMediaTypeRepository, MediaTypeRepository>();
 
             return services;
 		}
