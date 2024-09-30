@@ -1,0 +1,44 @@
+﻿@page "/segmentcategories/edit/{id:int}/"
+@attribute [Authorize(Roles = "Administrator")]
+
+<h3>Edit Segment Category</h3>
+
+<EditForm Model="@segmentCategory" OnValidSubmit="EditSegmentCategory">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+     @*Name field*@
+    <div class="form-group">
+        <label for="name">Category Name</label>
+        <InputText class="form-control" id="name" @bind-Value="segmentCategory.Name" />
+        <ValidationMessage For="@(() => segmentCategory.Name)" />
+    </div>
+    c
+    <div class="form-group">
+        <label for="description">Description</label>
+        <InputText class="form-control" id="description" @bind-Value="segmentCategory.Description" />
+        <ValidationMessage For="@(() => segmentCategory.Description)" />
+    </div>
+    @*DataType field*@
+    <div class="form-group">
+        <label for="dataType">Data Type</label>
+        <InputSelect class="form-control" id="dataType" @bind-Value="segmentCategory.DataTypeId">
+            <option>Select Data Type</option>
+            @foreach (var dataType in dataTypes)
+            {
+                <option value="@dataType.DataTypeId">@dataType.Name</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => segmentCategory.DataTypeId)" />
+    </div>
+    @*IsPredefined field*@
+    <div class="form-group">
+        <label for="isPredefined">Is predefined?</label>
+        <InputSelect class="form-control" id="isPredefined" @bind-Value="segmentCategory.IsPredefined">
+            <option value="true">True</option>
+            <option value="false">False</option>
+        </InputSelect>
+        <ValidationMessage For="@(() => segmentCategory.IsPredefined)" />
+    </div>
+    <button class="btn btn-success" type="submit">Update</button>
+    <BackToList Target="segmentcategories" />
+</EditForm>

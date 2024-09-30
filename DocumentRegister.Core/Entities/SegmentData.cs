@@ -1,27 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using System;
-using System.Collections.Generic;
+﻿using DocumentRegister.Core.Entities.Common;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DocumentRegister.Core.Entities
 {
-    public class SegmentData
+    public partial class SegmentData : BaseEntity
     {
         [Key]
         public int SegmentDataId { get; set; }
 
-        public required string SegmentValue { get; set; }
+        [StringLength(250)]
+        public required string Value { get; set; } = null!;
 
-        public required string SegmentValueDescription { get; set; }
+        [StringLength(250)]
+        public string Description { get; set; } = null!;
 
-        [ForeignKey("SegmentCategory")]
+        //many-to-one relationship with Segment Category        
         public int SegmentCategoryId { get; set; }
 
-        [ValidateNever]
-        public SegmentCategory? SegmentCategory { get; set; }
+        [ForeignKey("SegmentCategoryId")]
+        public virtual SegmentCategory SegmentCategory { get; set; } = null!;
+
     }
 }

@@ -1,0 +1,25 @@
+﻿@page "/segmentdata/details/{id:int}/"
+@attribute [Authorize(Roles = "Administrator")]
+
+<h3>Segment Data Details</h3>
+
+<EditForm Model="@segmentData" >
+    <fieldset disabled>
+        @*Segment Value field*@
+        <div class="form-group">
+            <label for="value">Value</label>
+            <InputText class="form-control" id="value" @bind-Value="segmentData.Value" />
+        </div>
+        @*Segment Description field*@
+        <div class="form-group">
+            <label for="description">Description</label>
+            <InputText class="form-control" id="description" @bind-Value="segmentData.Description" />
+        </div>
+        @*Segment Category field*@
+        <div class="form-group">
+            <label for="segmentCategory">Segment Category</label>
+            <InputText class="form-control" id="segmentCategory" @bind-Value="segmentData.SegmentCategory.Name" />
+        </div>
+    </fieldset>
+    <BackToList Target="segmentdata" />
+</EditForm>

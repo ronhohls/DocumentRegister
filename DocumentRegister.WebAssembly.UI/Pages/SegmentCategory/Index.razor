@@ -1,0 +1,54 @@
+﻿@page "/segmentcategories/"
+<h3>Segment Categories</h3>
+
+<div class="m-2 d-flex justify-content-end">
+    <a href="/segmentcategories/create" class="btn btn-success">Create</a>
+</div>
+
+@if (string.IsNullOrEmpty(message) == false)
+{
+    <div class="alert alert-danger">
+        @message
+    </div>
+}
+
+<div>
+    @if (segmentCategories == null)
+    {
+        <p>Loading Data...</p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Data Type Name</th>
+                    <th>Is Predefined</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var segmentCategory in segmentCategories)
+                {
+                    <tr>
+                        <td>@segmentCategory.SegmentCategoryId </td>
+                        <td>@segmentCategory.Name </td>
+                        <td>@segmentCategory.Description</td>
+                        <td>@segmentCategory.DataType.Name</td>
+                        <td>@segmentCategory.IsPredefined</td>
+                        <td>
+                            <AuthorizeView Roles="Administrator">
+                                <button @onclick="@(() => EditSegmentCategory(segmentCategory.SegmentCategoryId))" class="btn btn-warning">Edit</button>
+                                <button @onclick="@(() => DeleteSegmentCategory(segmentCategory.SegmentCategoryId))" class="btn btn-danger">Delete</button>
+                            </AuthorizeView>
+                            <button @onclick="@(() => DetailsSegmentCategory(segmentCategory.SegmentCategoryId))" class="btn btn-info">Details</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

@@ -1,0 +1,33 @@
+﻿@page "/segmentdata/create/"
+<h3>Create a Segment Data Entry</h3>
+
+<EditForm Model="@segmentData" OnValidSubmit="CreateSegmentData">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    @*Segment Value field*@
+    <div class="form-group">
+        <label for="value">Segment Value</label>
+        <InputText class="form-control" id="value" @bind-Value="segmentData.Value" />
+        <ValidationMessage For="@(() => segmentData.Value)" />
+    </div>
+    @*Segment Description field*@
+    <div class="form-group">
+        <label for="description">Description</label>
+        <InputText class="form-control" id="description" @bind-Value="segmentData.Description" />
+        <ValidationMessage For="@(() => segmentData.Description)" />
+    </div>
+    @*Segment Category field*@
+    <div class="form-group">
+        <label for="segmentCategory">Segment Category</label>
+        <InputSelect class="form-control" id="segmentCategory" @bind-Value="segmentData.SegmentCategoryId">
+            <option hidden>--Select Segment Category--</option>
+            @foreach (var segmentCategory in segmentCategories)
+            {
+                <option value="@segmentCategory.SegmentCategoryId">@segmentCategory.Name</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => segmentData.SegmentCategoryId)" />
+    </div>
+    <button class="btn btn-success" type="submit">Create</button>
+    <BackToList Target="segmentdata" />
+</EditForm>

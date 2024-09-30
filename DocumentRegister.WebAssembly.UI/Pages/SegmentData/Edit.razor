@@ -1,0 +1,35 @@
+﻿@page "/segmentdata/edit/{id:int}/"
+@attribute [Authorize(Roles = "Administrator")]
+
+<h3>Edit Segment Data</h3>
+
+<EditForm Model="@segmentData" OnValidSubmit="EditSegmentData">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    @*Segment Value field*@
+    <div class="form-group">
+        <label for="value">Value</label>
+        <InputText class="form-control" id="value" @bind-Value="segmentData.Value" />
+        <ValidationMessage For="@(() => segmentData.Value)" />
+    </div>
+    @*Segment Description field*@
+    <div class="form-group">
+        <label for="description">Description</label>
+        <InputText class="form-control" id="description" @bind-Value="segmentData.Description" />
+        <ValidationMessage For="@(() => segmentData.Description)" />
+    </div>
+    @*Segment Category field*@
+    <div class="form-group">
+        <label for="dataType">Data Type</label>
+        <InputSelect class="form-control" id="dataType" @bind-Value="segmentData.SegmentCategoryId">
+            <option>Select Segment Category</option>
+            @foreach (var segmentCategory in segmentCategories)
+            {
+                <option value="@segmentCategory.SegmentCategoryId">@segmentCategory.Name</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => segmentData.SegmentCategoryId)" />
+    </div>
+    <button class="btn btn-success" type="submit">Update</button>
+    <BackToList Target="segmentdata" />
+</EditForm>
