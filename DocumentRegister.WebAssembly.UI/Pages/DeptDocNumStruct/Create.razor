@@ -17,12 +17,13 @@
         <ValidationMessage For="@(() => deptDocNumStruct.Description)" />
     </div>
     @*Segment Category fields*@
+    @{index = 0;}
     @foreach (var newSegmentCategory in newSegmentCategories)
     {
         <div class="form-group">
-            <label for="segmentCategory">Segment Category </label>
-            <InputSelect class="form-control" id="segmentCategory" @bind-Value="newSegmentCategory.SegmentCategoryId">
-                <option hidden>-- Select Segment Category --</option>
+            <label for="@index.ToString()">Segment Category </label>
+            <InputSelect class="form-control" id="@index.ToString()" @bind-Value="newSegmentCategory.SegmentCategoryId">
+                <option value=0 hidden>-- Select Segment Category --</option>
                 @foreach (var segmentCategory in segmentCategories)
                 {
                     <option value="@segmentCategory.SegmentCategoryId">@segmentCategory.Name</option>
@@ -31,12 +32,22 @@
             <ValidationMessage For="@(() => newSegmentCategory.SegmentCategoryId)" />
         </div>
         <div class="col-6">
-            <button type="button" @onclick="(() => RemoveSegmentCategory(newSegmentCategory))" class="btn btn-danger">Remove</button>
+            <button type="button" @onclick="(() => RemoveSegmentCategory(newSegmentCategory))" class="btn btn-danger mt-2">
+                <i class="bi bi-trash"></i> Remove
+            </button>
         </div>
+        <br/>
+        index += 1;
     }
-    <div class="col-6">
-            <button type="button" @onclick="(() => AddSegmentCategory())" class="btn btn-primary">Add</button>
+    <hr/>
+    <div class="d-flex">
+        <button type="button" @onclick="(() => AddSegmentCategory())" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Add
+        </button>
     </div>
-    <button class="btn btn-success" type="submit">Create</button>
-    <BackToList Target="deptdocnumstructs" />
+    <hr/>
+    <div class="d-flex">
+        <button class="btn btn-success me-2" type="submit">Create</button>
+        <BackToList Target="deptdocnumstructs" />
+    </div>
 </EditForm>

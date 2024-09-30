@@ -20,7 +20,7 @@
     <div class="form-group">
         <label for="dataType">Data Type</label>
         <InputSelect class="form-control" id="dataType" @bind-Value="segmentCategory.DataTypeId">
-            <option>Select Data Type</option>
+            <option>--Select Data Type--</option>
             @foreach (var dataType in dataTypes)
             {
                 <option value="@dataType.DataTypeId">@dataType.Name</option>
@@ -37,6 +37,9 @@
         </InputSelect>
         <ValidationMessage For="@(() => segmentCategory.IsPredefined)" />
     </div>
-    <button class="btn btn-success" type="submit">Create</button>
-    <BackToList Target="segmentcategories" />
+    <hr/>
+    <div class="d-flex">
+        <button class="btn btn-success me-2" type="submit">Create</button>
+        <BackToList Target="segmentcategories" />
+    </div>
 </EditForm>

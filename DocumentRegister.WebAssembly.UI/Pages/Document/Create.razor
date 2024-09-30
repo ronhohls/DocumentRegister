@@ -21,50 +21,56 @@
         @*Segment Fields*@
         @foreach (var entry in combinedCollection)
         {
-            <div>
-                <p>Category name: @entry.segmentCategory.Name</p>
-                <p>Category Description: @entry.segmentCategory.Description</p>
-            </div>
-            @*Segment value and description fields*@
-            @if (entry.segmentCategory.IsPredefined == true)
-            {
+            <div class="border mt-2 p-2 ">
                 <div>
-                    <label for="predefinedSegmentData">Predefined Segment Data</label>
-                    <InputSelect class="form-control" id="predefinedSegmentData" @bind-Value="entry.documentSegment.SegmentDataId">
-                        <option hidden>-- Select Segment Data --</option>
-                        @foreach (var segmentData in entry.segmentCategory.SegmentDatum)
-                        {
-                            <option value="@segmentData.SegmentDataId">@segmentData.Description , @segmentData.Value</option>
-                        }
-                    </InputSelect>
-                    <br/>
+                    <p>
+                        <b>Category name: </b>@entry.segmentCategory.Name
+                    </p>
+                    <p>
+                        <b>Category Description: </b>@entry.segmentCategory.Description
+                    </p>
                 </div>
-                @if (entry.documentSegment.SegmentDataId != null && entry.documentSegment.SegmentDataId.HasValue)
+                @*Segment value and description fields*@
+                @if (entry.segmentCategory.IsPredefined == true)
                 {
-                    var selectedSegmentData = segmentDatum.FirstOrDefault(s => s.SegmentDataId == entry.documentSegment.SegmentDataId.Value);
-                    entry.documentSegment.Value = selectedSegmentData.Value;
-                    entry.documentSegment.ValueDescription = selectedSegmentData.Description;
+                    <div>
+                        <label for="predefinedSegmentData">Predefined Segment Data</label>
+                        <InputSelect class="form-control" id="predefinedSegmentData" @bind-Value="entry.documentSegment.SegmentDataId">
+                            <option hidden>-- Select Segment Data --</option>
+                            @foreach (var segmentData in entry.segmentCategory.SegmentDatum)
+                            {
+                                <option value="@segmentData.SegmentDataId">@segmentData.Description , @segmentData.Value</option>
+                            }
+                        </InputSelect>
+                    </div>
+                    @if (entry.documentSegment.SegmentDataId != null && entry.documentSegment.SegmentDataId.HasValue)
+                    {
+                        var selectedSegmentData = segmentDatum.FirstOrDefault(s => s.SegmentDataId == entry.documentSegment.SegmentDataId.Value);
+                        entry.documentSegment.Value = selectedSegmentData.Value;
+                        entry.documentSegment.ValueDescription = selectedSegmentData.Description;
+                    }
                 }
-            }
-            @* not predefined Segment Category = user input value and description *@
-            else
-            {
-                <div class="form-group">
-                    <label for="segmentValue">Segment Value</label>
-                    <InputText class="form-control" id="segmentValue" @bind-Value="entry.documentSegment.Value" />
-                    <ValidationMessage For="@(() => entry.documentSegment.Value)" />
-                </div>
-                <div class="form-group">
-                    <label for="segmentValueDescription">Segment value description </label>
-                    <InputText class="form-control" id="segmentValueDescription" @bind-Value="entry.documentSegment.ValueDescription" />
-                    <ValidationMessage For="@(() => entry.documentSegment.ValueDescription)" />
-                </div>
+                @* not predefined Segment Category = user input value and description *@
+                else
+                {
+                    <div class="form-group">
+                        <label for="segmentValue">Segment Value</label>
+                        <InputText class="form-control" id="segmentValue" @bind-Value="entry.documentSegment.Value" />
+                        <ValidationMessage For="@(() => entry.documentSegment.Value)" />
+                    </div>
+                    <div class="form-group">
+                        <label for="segmentValueDescription">Segment value description </label>
+                        <InputText class="form-control" id="segmentValueDescription" @bind-Value="entry.documentSegment.ValueDescription" />
+                        <ValidationMessage For="@(() => entry.documentSegment.ValueDescription)" />
+                    </div>
                 
-            }
-            @*assign category name and description to documentSegment*@
-            entry.documentSegment.CategoryName = entry.segmentCategory.Name;
-            entry.documentSegment.CategoryDescription = entry.segmentCategory.Description;
-            <br/>
+                }
+                @*assign category name and description to documentSegment*@
+                @{
+                    entry.documentSegment.CategoryName = entry.segmentCategory.Name;
+                    entry.documentSegment.CategoryDescription = entry.segmentCategory.Description;
+                }
+            </div>
         }
         @* Description field *@
         <div class="form-group">
@@ -110,8 +116,10 @@
             <InputText class="form-control" id="location" @bind-Value="document.Location" />
             <ValidationMessage For="@(() => document.Location)" />
         </div>
-        <br/>
-        <button class="btn btn-success" type="submit">Create Document</button>
-        <BackToList Target="documents" />
+        <hr/>
+        <div class="d-flex">
+            <button class="btn btn-success me-2" type="submit">Create Document</button>
+            <BackToList Target="documents" />
+        </div>
     </EditForm>
 }

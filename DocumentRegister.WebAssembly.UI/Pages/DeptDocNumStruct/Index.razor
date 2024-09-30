@@ -2,7 +2,9 @@
 <h3>Department Document Number Structures List</h3>
 
 <div class="m-2 d-flex justify-content-end">
-    <a href="/deptdocnumstructs/create" class="btn btn-success">Create</a>
+    <a href="/deptdocnumstructs/create" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Create
+    </a>
 </div>
 
 @if (string.IsNullOrEmpty(message) == false)
@@ -19,46 +21,55 @@
     }
     else
     {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Seperator</th>
-                    <th>Description</th>
-                    <th>Segment Category 1 Name</th>
-                    <th>Segment Category 2 Name</th>
-                    <th>Segment Category 3 Name</th>
-                    <th>Segment Category 4 Name</th>
-                    <th>Segment Category 5 Name</th>
-                    <th>Segment Category 6 Name</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var deptDocNumStructInstance in deptDocNumStructs)
-                {
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-sm">
+                <thead class="thead-light">
                     <tr>
-                        <td>@deptDocNumStructInstance.DeptDocNumStructId </td>
-                        <td>@deptDocNumStructInstance.Seperator </td>
-                        <td>@deptDocNumStructInstance.Description</td>
-                        @foreach(var segmentCategory in deptDocNumStructInstance.SegmentCategories)
-                        {
-                            <td>@segmentCategory.Name</td>
-                        }
-                        @for(int i = 0; i < 6 - deptDocNumStructInstance.SegmentCategories.Count();i++)
-                        {
-                            <td> </td>
-                        }
-                        <td>
-                            <AuthorizeView Roles="Administrator">
-                                <button @onclick="@(() => EditDeptDocNumStruct(deptDocNumStructInstance.DeptDocNumStructId))" class="btn btn-warning">Edit</button>
-                                <button @onclick="@(() => DeleteDeptDocNumStruct(deptDocNumStructInstance.DeptDocNumStructId))" class="btn btn-danger">Delete</button>
-                            </AuthorizeView>
-                            <button @onclick="@(() => DetailsDeptDocNumStruct(deptDocNumStructInstance.DeptDocNumStructId))" class="btn btn-info">Details</button>
-                        </td>
+                        <th scope="col">Id</th>
+                        <th scope="col">Seperator</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Segment Category 1 Name</th>
+                        <th scope="col">Segment Category 2 Name</th>
+                        <th scope="col">Segment Category 3 Name</th>
+                        <th scope="col">Segment Category 4 Name</th>
+                        <th scope="col">Segment Category 5 Name</th>
+                        <th scope="col">Segment Category 6 Name</th>
+                        <th scope="col">Actions</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var deptDocNumStructInstance in deptDocNumStructs)
+                    {
+                        <tr>
+                            <th scope="row">@deptDocNumStructInstance.DeptDocNumStructId </th>
+                            <td>@deptDocNumStructInstance.Seperator </td>
+                            <td>@deptDocNumStructInstance.Description</td>
+                            @foreach(var segmentCategory in deptDocNumStructInstance.SegmentCategories)
+                            {
+                                <td>@segmentCategory.Name</td>
+                            }
+                            @for(int i = 0; i < 6 - deptDocNumStructInstance.SegmentCategories.Count();i++)
+                            {
+                                <td> </td>
+                            }
+                            <td>
+                                <AuthorizeView Roles="Administrator">
+                                    <button @onclick="@(() => EditDeptDocNumStruct(deptDocNumStructInstance.DeptDocNumStructId))" class="btn btn-warning">
+                                        <i class="bi bi-pencil-fill"></i> Edit
+                                    </button>
+                                    <button @onclick="@(() => DeleteDeptDocNumStruct(deptDocNumStructInstance.DeptDocNumStructId))" class="btn btn-danger">
+                                        <i class="bi bi-pencil-fill"></i> Delete
+                                    </button>
+                                </AuthorizeView>
+                                <button @onclick="@(() => DetailsDeptDocNumStruct(deptDocNumStructInstance.DeptDocNumStructId))" class="btn btn-info">
+                                    <i class="bi bi-info-circle"></i> Details
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        
     }
 </div>

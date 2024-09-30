@@ -1,5 +1,6 @@
 ﻿@page "/register"
-<h3>Register</h3>
+<h2>Register</h2>
+<h4>Create a new account</h4>
 
 @if (string.IsNullOrEmpty(Message) == false)
 {
@@ -39,6 +40,7 @@
                 <InputText id="Password" class="form-control" @bind-Value="Model.Password"></InputText>
                 <ValidationMessage For="@(() => Model.Password)" />
             </div>
+            <br/>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Register</button>
             </div>

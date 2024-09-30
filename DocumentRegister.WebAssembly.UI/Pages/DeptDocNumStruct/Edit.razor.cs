@@ -28,8 +28,10 @@ namespace DocumentRegister.WebAssembly.UI.Pages.DeptDocNumStruct
         [Parameter]
         public int id { get; set; }
         public string message { get; private set; } = string.Empty;
+        public int index { get; set; } = 0;
         private int minSegmentCategories = 3;
         private int maxSegmentCategories = 6;
+        
 
         protected override async Task OnInitializedAsync()
         {

@@ -2,7 +2,9 @@
 <h3>Segment Categories</h3>
 
 <div class="m-2 d-flex justify-content-end">
-    <a href="/segmentcategories/create" class="btn btn-success">Create</a>
+    <a href="/segmentcategories/create" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Create
+    </a>
 </div>
 
 @if (string.IsNullOrEmpty(message) == false)
@@ -19,36 +21,44 @@
     }
     else
     {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Data Type Name</th>
-                    <th>Is Predefined</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var segmentCategory in segmentCategories)
-                {
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="thead-light">
                     <tr>
-                        <td>@segmentCategory.SegmentCategoryId </td>
-                        <td>@segmentCategory.Name </td>
-                        <td>@segmentCategory.Description</td>
-                        <td>@segmentCategory.DataType.Name</td>
-                        <td>@segmentCategory.IsPredefined</td>
-                        <td>
-                            <AuthorizeView Roles="Administrator">
-                                <button @onclick="@(() => EditSegmentCategory(segmentCategory.SegmentCategoryId))" class="btn btn-warning">Edit</button>
-                                <button @onclick="@(() => DeleteSegmentCategory(segmentCategory.SegmentCategoryId))" class="btn btn-danger">Delete</button>
-                            </AuthorizeView>
-                            <button @onclick="@(() => DetailsSegmentCategory(segmentCategory.SegmentCategoryId))" class="btn btn-info">Details</button>
-                        </td>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Data Type Name</th>
+                        <th scope="col">Is Predefined</th>
+                        <th scope="col">Actions</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var segmentCategory in segmentCategories)
+                    {
+                        <tr>
+                            <th scope="row">@segmentCategory.SegmentCategoryId </th>
+                            <td>@segmentCategory.Name </td>
+                            <td>@segmentCategory.Description</td>
+                            <td>@segmentCategory.DataType.Name</td>
+                            <td>@segmentCategory.IsPredefined</td>
+                            <td>
+                                <AuthorizeView Roles="Administrator">
+                                    <button @onclick="@(() => EditSegmentCategory(segmentCategory.SegmentCategoryId))" class="btn btn-warning">
+                                        <i class="bi bi-pencil-fill"></i> Edit
+                                    </button>
+                                    <button @onclick="@(() => DeleteSegmentCategory(segmentCategory.SegmentCategoryId))" class="btn btn-danger">
+                                        <i class="bi bi-trash-fill"></i> Delete
+                                    </button>
+                                </AuthorizeView>
+                                <button @onclick="@(() => DetailsSegmentCategory(segmentCategory.SegmentCategoryId))" class="btn btn-info">
+                                    <i class="bi bi-info-circle"></i> Details
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     }
 </div>

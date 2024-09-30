@@ -2,7 +2,9 @@
 <h3>Documents</h3>
 
 <div class="m-2 d-flex justify-content-end">
-    <a href="/documents/create" class="btn btn-success">Create</a>
+    <a href="/documents/create" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Create
+    </a>
 </div>
 
 @if (string.IsNullOrEmpty(message) == false)
@@ -65,10 +67,16 @@
                             <td>@document.Location</td>
                             <td>
                                 <AuthorizeView Roles="Administrator">
-                                    <button @onclick="@(() => EditDocument(document.DocumentId))" class="btn btn-warning">Edit</button>
-                                    <button @onclick="@(() => DeleteDocument(document.DocumentId))" class="btn btn-danger">Delete</button>
+                                    <button @onclick="@(() => EditDocument(document.DocumentId))" class="btn btn-warning">
+                                        <i class="bi bi-pencil-fill"></i> Edit
+                                    </button>
+                                    <button @onclick="@(() => DeleteDocument(document.DocumentId))" class="btn btn-danger">
+                                        <i class="bi bi-trash-fill"></i> Delete
+                                    </button>
                                 </AuthorizeView>
-                                <button @onclick="@(() => DetailsDocument(document.DocumentId))" class="btn btn-info">Details</button>
+                                <button @onclick="@(() => DetailsDocument(document.DocumentId))" class="btn btn-info">
+                                    <i class="bi bi-info-circle"></i> Details
+                                </button>
                             </td>
                         </tr>
                     }

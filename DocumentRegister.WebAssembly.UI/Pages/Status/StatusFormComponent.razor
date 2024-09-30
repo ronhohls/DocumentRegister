@@ -11,9 +11,12 @@
 			</div>
 		</div>
 	</fieldset>
-	@if (!Disabled)
-	{
-		<button type="submit" class="btn btn-success btn-block">@ButtonText</button>
-	}
-	<BackToList Target="statuses"/>
+	<hr/>
+	<div class="d-flex">
+		@if (!Disabled)
+		{
+			<button type="submit" class="btn btn-success btn-block me-2">@ButtonText</button>
+		}
+		<BackToList Target="mediatypes"/>
+	</div>
 </EditForm>

@@ -28,6 +28,7 @@ namespace DocumentRegister.WebAssembly.UI.Pages.DeptDocNumStruct
         public string message { get; private set; } = string.Empty;
         private int minSegmentCategories = 3; 
         private int maxSegmentCategories = 6;
+        public int index { get; set; } = 0;
         protected override async Task OnInitializedAsync()
         {
             //initialise list of all segment categories

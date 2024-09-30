@@ -3,7 +3,9 @@
 <h3>Data Types</h3>
 
 <div class="m-2 d-flex justify-content-end">
-    <a href="/datatypes/create" class="btn btn-success">Create</a>
+    <a href="/datatypes/create" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Create
+    </a>
 </div>
 
 @if (string.IsNullOrEmpty(message) == false)
@@ -20,30 +22,38 @@
     }
     else
     {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var dataType in dataTypes)
-                {
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="thead-light">
                     <tr>
-                        <td>@dataType.DataTypeId </td>
-                        <td>@dataType.Name </td>
-                        <td>
-                            <AuthorizeView Roles="Administrator">
-                                <button @onclick="@(() => EditDataType(dataType.DataTypeId))" class="btn btn-warning">Edit</button>
-                                <button @onclick="@(() => DeleteDataType(dataType.DataTypeId))" class="btn btn-danger">Delete</button>
-                            </AuthorizeView>
-                            <button @onclick="@(() => DetailsDataType(dataType.DataTypeId))" class="btn btn-info">Details</button>
-                        </td>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Actions</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var dataType in dataTypes)
+                    {
+                        <tr>
+                            <th scope="row">@dataType.DataTypeId </th>
+                            <td>@dataType.Name </td>
+                            <td>
+                                <AuthorizeView Roles="Administrator">
+                                    <button @onclick="@(() => EditDataType(dataType.DataTypeId))" class="btn btn-warning">
+                                        <i class="bi bi-pencil-fill"></i> Edit
+                                    </button>
+                                    <button @onclick="@(() => DeleteDataType(dataType.DataTypeId))" class="btn btn-danger">
+                                        <i class="bi bi-trash-fill"></i> Delete
+                                    </button>
+                                </AuthorizeView>
+                                <button @onclick="@(() => DetailsDataType(dataType.DataTypeId))" class="btn btn-info">
+                                    <i class="bi bi-info-circle"></i> Details
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     }
 </div>
