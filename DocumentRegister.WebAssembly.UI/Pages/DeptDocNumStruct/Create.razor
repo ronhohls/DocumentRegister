@@ -1,0 +1,42 @@
+﻿@page "/deptdocnumstructs/create/"
+<h3>Create a Department Document Number Structure</h3>
+
+<EditForm Model="@deptDocNumStruct" OnValidSubmit="CreateDeptDocNumStruct">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    @*Seperator field*@
+    <div class="form-group">
+        <label for="seperator">Seperator</label>
+        <InputText class="form-control" id="seperator" @bind-Value="deptDocNumStruct.Seperator" />
+        <ValidationMessage For="@(() => deptDocNumStruct.Seperator)" />
+    </div>
+    @*Description field*@
+    <div class="form-group">
+        <label for="description">Description</label>
+        <InputText class="form-control" id="description" @bind-Value="deptDocNumStruct.Description" />
+        <ValidationMessage For="@(() => deptDocNumStruct.Description)" />
+    </div>
+    @*Segment Category fields*@
+    @foreach (var newSegmentCategory in newSegmentCategories)
+    {
+        <div class="form-group">
+            <label for="segmentCategory">Segment Category </label>
+            <InputSelect class="form-control" id="segmentCategory" @bind-Value="newSegmentCategory.SegmentCategoryId">
+                <option hidden>-- Select Segment Category --</option>
+                @foreach (var segmentCategory in segmentCategories)
+                {
+                    <option value="@segmentCategory.SegmentCategoryId">@segmentCategory.Name</option>
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => newSegmentCategory.SegmentCategoryId)" />
+        </div>
+        <div class="col-6">
+            <button type="button" @onclick="(() => RemoveSegmentCategory(newSegmentCategory))" class="btn btn-danger">Remove</button>
+        </div>
+    }
+    <div class="col-6">
+            <button type="button" @onclick="(() => AddSegmentCategory())" class="btn btn-primary">Add</button>
+    </div>
+    <button class="btn btn-success" type="submit">Create</button>
+    <BackToList Target="deptdocnumstructs" />
+</EditForm>

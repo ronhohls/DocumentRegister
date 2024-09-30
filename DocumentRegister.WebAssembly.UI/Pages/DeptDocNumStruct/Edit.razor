@@ -1,0 +1,58 @@
+﻿@page "/deptdocnumstructs/edit/{id:int}/"
+@attribute [Authorize(Roles = "Administrator")]
+
+<h3>Edit Department Document Number Structure</h3>
+@if (deptDocNumStruct != null)
+{
+    <EditForm Model="@deptDocNumStruct" OnValidSubmit="EditDeptDocNumStruct">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        @*Seperator field*@
+        <div class="form-group">
+            <label for="seperator">Seperator</label>
+            <InputText class="form-control" id="seperator" @bind-Value="deptDocNumStruct.Seperator" />
+            <ValidationMessage For="@(() => deptDocNumStruct.Seperator)" />
+        </div>
+        @*Description field*@
+        <div class="form-group">
+            <label for="description">Description</label>
+            <InputText class="form-control" id="description" @bind-Value="deptDocNumStruct.Description" />
+            <ValidationMessage For="@(() => deptDocNumStruct.Description)" />
+        </div>
+        @*Segment Category fields*@
+        @if (deptDocNumStruct.SegmentCategories != null)
+        {
+            @foreach(var segmentCategory in ddnsSegmentCategories)
+            {
+                <div class="form-group">
+                    <label for="segmentCategory">Data Type</label>
+                    <InputSelect class="form-control" id="segmentCategory" @bind-Value="segmentCategory.SegmentCategoryId">
+                        <option hidden value="0">-- Select Segment Category --</option>
+                        @foreach (var segmentCategory in segmentCategories)
+                        {
+                            <option value="@segmentCategory.SegmentCategoryId">@segmentCategory.Name</option>
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="@(() => segmentCategory.SegmentCategoryId)" />
+                </div>
+                <div class="col-6">
+                    <button type="button" @onclick="(() => RemoveSegmentCategory(segmentCategory))" class="btn btn-danger">Remove</button>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Loading...</p>
+        }
+        <div class="col-6">
+            <button type="button" @onclick="(() => AddSegmentCategory())" class="btn btn-primary">Add</button>
+        </div>
+        <hr/>
+        <button class="btn btn-success" type="submit">Update</button>
+        <BackToList Target="deptdocnumstructs" />
+    </EditForm>
+}
+else
+{
+    <p>Loading...</p>
+}

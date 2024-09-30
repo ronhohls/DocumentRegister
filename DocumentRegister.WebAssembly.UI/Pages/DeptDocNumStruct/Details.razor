@@ -1,0 +1,47 @@
+﻿@page "/deptdocnumstructs/details/{id:int}/"
+@attribute [Authorize(Roles = "Administrator")]
+
+<h3>Department Document Number Structure Details</h3>
+
+@if (deptDocNumStruct == null)
+{
+    <p>Loading data...</p>
+}
+else
+{
+    <EditForm Model="@deptDocNumStruct">
+        <fieldset disabled>
+            @*Seperator field*@
+            <div class="form-group">
+                <label for="seperator">Seperator</label>
+                <InputText class="form-control" id="seperator" @bind-Value="deptDocNumStruct.Seperator" />
+            </div>
+            @*Description field*@
+            <div class="form-group">
+                <label for="description">Description</label>
+                <InputText class="form-control" id="description" @bind-Value="deptDocNumStruct.Description" />
+            </div>
+            @*Segment Category fields*@
+            @if (isLoadingSegmentCategories)
+            {
+                <p>Loading Segment Categories</p>
+            }
+            else if (deptDocNumStruct.SegmentCategories != null && deptDocNumStruct.SegmentCategories.Any())
+            {
+                @foreach (var category in deptDocNumStruct.SegmentCategories)
+                {
+                    <div class="form-group">
+                        <label for="segmentCategory">Segment Category </label>
+                        <InputText class="form-control" id="segmentCategory" @bind-Value="category.Name">
+                        </InputText>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>No segment categories available</p>
+            }
+        </fieldset>
+        <BackToList Target="deptdocnumstructs" />
+    </EditForm>
+}
