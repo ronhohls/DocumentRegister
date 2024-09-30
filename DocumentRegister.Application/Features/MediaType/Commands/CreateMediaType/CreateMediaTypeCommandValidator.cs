@@ -1,6 +1,4 @@
 ﻿using DocumentRegister.Application.Contracts.Persistence;
-using DocumentRegister.Application.Features.MediaType.Commands.CreateMediaType;
-using DocumentRegister.Application.Features.MediaType.Commands.DeleteMediaType;
 using FluentValidation;
 
 namespace DocumentRegister.Application.Features.MediaType.Commands.CreateMediaType
@@ -15,7 +13,6 @@ namespace DocumentRegister.Application.Features.MediaType.Commands.CreateMediaTy
 			RuleFor(p => p.Description)
 				.NotEmpty().WithMessage("{propertyName} is required")
 				.MaximumLength(100).WithMessage("{propertyName} must be fewer than 100 characters");
-
 		}
     }
 }

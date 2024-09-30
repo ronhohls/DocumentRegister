@@ -7,6 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Contracts\IDocumentSegmentService.cs" />
+    <Compile Remove="Pages\DocumentSegment\Index.razor.cs" />
+    <Compile Remove="Services\DocumentSegmentService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\DocumentSegment\Index.razor" />
+  </ItemGroup>
+	
+
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
     <PackageReference Include="Blazored.Toast" Version="4.2.1" />
@@ -14,9 +26,16 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="8.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.8" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Exchange.WebServices" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.0.2" />
+  </ItemGroup>
+	
+
+
+  <ItemGroup>
+    <Folder Include="Pages\DocumentSegment\" />
   </ItemGroup>
 
 </Project>

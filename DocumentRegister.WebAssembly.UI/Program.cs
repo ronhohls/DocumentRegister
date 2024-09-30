@@ -19,27 +19,34 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddTransient<JwtAuthorizationMessageHandler>();
 
 builder.Services.AddHttpClient<IClient, Client>(client => client.BaseAddress = new Uri("https://localhost:7186"))
-	.AddHttpMessageHandler<JwtAuthorizationMessageHandler>(); ;
-//alt
-//builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7186") });
+	.AddHttpMessageHandler<JwtAuthorizationMessageHandler>()
+    .ConfigureHttpClient(client =>
+    {
+        var options = new System.Text.Json.JsonSerializerOptions
+        {
+            DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
+            PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase
+        };
+        // Pass the options when needed or use globally
+    });
 
 builder.Services.AddBlazoredToast();
 builder.Services.AddBlazoredLocalStorage();
 
 builder.Services.AddScoped<ApiAuthenticationStateProvider>();
-//builder.Services.AddScoped<AuthenticationStateProvider>(p =>
-//    p.GetRequiredService<ApiAuthenticationStateProvider>());
 builder.Services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
 
 builder.Services.AddAuthorizationCore();
-
-//alt
-//builder.Services.AddScoped<IClient, Client>();
 
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<IDataTypeService, DataTypeService>();
 builder.Services.AddScoped<IStatusService, StatusService>();
 builder.Services.AddScoped<IMediaTypeService, MediaTypeService>();
+builder.Services.AddScoped<ISegmentCategoryService, SegmentCategoryService>();
+builder.Services.AddScoped<ISegmentDataService, SegmentDataService>();
+builder.Services.AddScoped<IDeptDocNumStructService, DeptDocNumStructService>();
+//builder.Services.AddScoped<IDocumentSegmentService, DocumentSegmentService>();
+builder.Services.AddScoped<IDocumentService, DocumentService>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

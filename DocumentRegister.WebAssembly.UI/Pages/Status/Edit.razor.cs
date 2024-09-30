@@ -1,5 +1,7 @@
-﻿using DocumentRegister.WebAssembly.UI.Contracts;
+﻿using Blazored.Toast.Services;
+using DocumentRegister.WebAssembly.UI.Contracts;
 using DocumentRegister.WebAssembly.UI.Models.Status;
+using DocumentRegister.WebAssembly.UI.Services;
 using Microsoft.AspNetCore.Components;
 
 namespace DocumentRegister.WebAssembly.UI.Pages.Status
@@ -7,32 +9,44 @@ namespace DocumentRegister.WebAssembly.UI.Pages.Status
 	public partial class Edit
 	{
 		[Inject]
-		IStatusService StatusService { get; set; }
-
+		IStatusService statusService { get; set; }
 		[Inject]
-		NavigationManager NavigationManager { get; set; }
+		NavigationManager navigationManager { get; set; }
+        [Inject]
+        IToastService toastService { get; set; }
 
-		[Parameter]
+        [Parameter]
 		public int id { get; set; }
-		public string Message { get; set; }
+		public string message { get; set; }
 
 		StatusVM status = new StatusVM();
 
 		protected override async Task OnParametersSetAsync()
 		{
-			status = await StatusService.GetStatusById(id);
-		}
+            try
+            {
+                status = await statusService.GetStatusById(id);
+
+            }
+            catch (Exception ex)
+            {
+                message = $"Error fetching data: {ex.Message}";
+                toastService.ShowError(message);
+            }
+        }
 
 		async Task EditStatus()
 		{
-			var response = await StatusService.UpdateStatus(id, status);
-			if (response.Success)
+			var response = await statusService.UpdateStatus(id, status);
+            if (response.Success)
 			{
-				NavigationManager.NavigateTo("/statuses/");
+                toastService.ShowSuccess("Status Successfully Updated");
+                navigationManager.NavigateTo("/statuses/");
 			}
 			else
 			{
-				Message = response.Message;
+				message = response.Message;
+				toastService.ShowError(message);
 			}
 		}
 	}

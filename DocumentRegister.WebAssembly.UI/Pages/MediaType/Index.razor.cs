@@ -8,36 +8,36 @@ namespace DocumentRegister.WebAssembly.UI.Pages.MediaType
     public partial class Index
     {
         [Inject]
-        public NavigationManager NavigationManager { get; set; }
+        public NavigationManager navigationManager { get; set; }
 
         [Inject]
-        public IMediaTypeService MediaTypeService { get; set; }
+        public IMediaTypeService mediaTypeService { get; set; }
 
         [Inject]
         IToastService toastService { get; set; }
         [Inject]
-        ILogger<Index> Logger { get; set; }
-		public List<MediaTypeVM> MediaTypes { get; private set; }
-        public string Message { get; set; } = string.Empty;
+        ILogger<Index> logger { get; set; }
+		public List<MediaTypeVM> mediaTypes { get; private set; }
+        public string message { get; set; } = string.Empty;
 
         protected void CreateMediaType()
         {
-            NavigationManager.NavigateTo("/mediatypes/create/");
+            navigationManager.NavigateTo("/mediatypes/create/");
         }
 
         protected void EditMediaType(int id)
         {
-            NavigationManager.NavigateTo($"/mediatypes/edit/{id}");
+            navigationManager.NavigateTo($"/mediatypes/edit/{id}");
         }
 
         protected void DetailsMediaType(int id)
         {
-			NavigationManager.NavigateTo($"/mediatypes/details/{id}");
+			navigationManager.NavigateTo($"/mediatypes/details/{id}");
         }
 
         protected async Task DeleteMediaType(int id)
         {
-            var response = await MediaTypeService.DeleteMediaType(id);
+            var response = await mediaTypeService.DeleteMediaType(id);
             if (response.Success)
             {
                 toastService.ShowSuccess("Media Type deleted Successfully");
@@ -45,13 +45,22 @@ namespace DocumentRegister.WebAssembly.UI.Pages.MediaType
             }
             else
             {
-                Message = response.Message;
+                message = response.Message;
+                toastService?.ShowError(message);
             }
         }
 
         protected override async Task OnInitializedAsync()
         {
-            MediaTypes = await MediaTypeService.GetMediaTypes();
-		}
+            try
+            {
+                mediaTypes = await mediaTypeService.GetMediaTypes();
+            }
+            catch (Exception ex)
+            {
+                message = $"Error fetching data: {ex.Message}";
+                toastService.ShowError(message);
+            }
+        }
     }
 }

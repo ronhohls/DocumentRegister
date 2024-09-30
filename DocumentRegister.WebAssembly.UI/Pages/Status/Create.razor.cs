@@ -13,7 +13,7 @@ namespace DocumentRegister.WebAssembly.UI.Pages.Status
 		IStatusService statusService { get; set; }
 		[Inject]
 		IToastService toastService { get; set; }
-		public string Message { get; private set; }
+		public string message { get; private set; }
 		public StatusVM status { get; set; } = new StatusVM();
 
 		async Task CreateStatus()
@@ -22,13 +22,12 @@ namespace DocumentRegister.WebAssembly.UI.Pages.Status
 			if (response.Success)
 			{
 				toastService.ShowSuccess("Status created Successfully");
-				toastService.ShowToast(ToastLevel.Info, "Test");
 				navigationManager.NavigateTo("statuses");
-
 			}
 			else
 			{
-				Message = response.Message;
+				message = response.Message;
+				toastService.ShowError(message);
 			}
 		}
 	}

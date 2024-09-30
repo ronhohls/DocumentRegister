@@ -1,4 +1,5 @@
-﻿using DocumentRegister.WebAssembly.UI.Contracts;
+﻿using Blazored.Toast.Services;
+using DocumentRegister.WebAssembly.UI.Contracts;
 using DocumentRegister.WebAssembly.UI.Models.MediaType;
 using Microsoft.AspNetCore.Components;
 
@@ -7,32 +8,41 @@ namespace DocumentRegister.WebAssembly.UI.Pages.MediaType
 	public partial class Edit
 	{
 		[Inject]
-		IMediaTypeService MediaTypeService { get; set; }
-
+		IMediaTypeService mediaTypeService { get; set; }
 		[Inject]
-		NavigationManager NavigationManager { get; set; }
-
-		[Parameter]
+		NavigationManager navigationManager { get; set; }
+        [Inject]
+        IToastService toastService { get; set; }
+        [Parameter]
 		public int id { get; set; }
-		public string Message { get; set; }
-
+		public string message { get; set; }
 		MediaTypeVM mediaType = new MediaTypeVM();
 
 		protected override async Task OnParametersSetAsync()
 		{
-			mediaType = await MediaTypeService.GetMediaTypeById(id);
-		}
+            try
+            {
+                mediaType = await mediaTypeService.GetMediaTypeById(id);
+            }
+            catch (Exception ex)
+            {
+                message = $"Error fetching data: {ex.Message}";
+                toastService.ShowError(message);
+            }
+        }
 
 		async Task EditMediaType()
 		{
-			var response = await MediaTypeService.UpdateMediaType(id, mediaType);
-			if (response.Success)
+			var response = await mediaTypeService.UpdateMediaType(id, mediaType);
+            if (response.Success)
 			{
-				NavigationManager.NavigateTo("/mediatypes/");
+                toastService.ShowSuccess("Media Type Successfully Updated");
+                navigationManager.NavigateTo("/mediatypes/");
 			}
 			else
 			{
-				Message = response.Message;
+				message = response.Message;
+				toastService.ShowError(message);
 			}
 		}
 	}

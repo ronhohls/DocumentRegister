@@ -4,7 +4,6 @@ using DocumentRegister.Application.Exceptions;
 using DocumentRegister.Core.DTOs.MediaType;
 using MediatR;
 
-
 namespace DocumentRegister.Application.Features.MediaType.Queries.GetMediaTypeDetails
 {
     public class GetMediaTypeDetailsQueryHandler : IRequestHandler<GetMediaTypeDetailsQuery, MediaTypeDetailsDto>

@@ -13,7 +13,7 @@ namespace DocumentRegister.WebAssembly.UI.Pages.DataType
 		IDataTypeService dataTypeService { get; set; }
 		[Inject]
 		IToastService toastService { get; set; }
-		public string Message { get; private set; }
+		public string message { get; private set; }
 		public DataTypeVM dataType { get; set; } = new DataTypeVM();
 
 		async Task CreateDataType()
@@ -22,14 +22,13 @@ namespace DocumentRegister.WebAssembly.UI.Pages.DataType
 			if (response.Success)
 			{
 				toastService.ShowSuccess("Data Type created Successfully");
-				toastService.ShowToast(ToastLevel.Info, "Test");
 				navigationManager.NavigateTo("datatypes");
-
 			}
 			else
 			{
-				Message = response.Message;
-			}
+				message = response.Message;
+                toastService.ShowError(message);
+            }
 		}
 	}
 }

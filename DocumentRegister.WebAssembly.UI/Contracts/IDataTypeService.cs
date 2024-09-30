@@ -7,8 +7,8 @@ namespace DocumentRegister.WebAssembly.UI.Contracts
 	{
 		Task<List<DataTypeVM>> GetDataTypes();
 		Task<DataTypeVM> GetDataTypeById(int id);
-		Task<Response<Guid>> CreateDataType(DataTypeVM dataType);
-		Task<Response<Guid>> UpdateDataType(int id, DataTypeVM dataType);
-		Task<Response<Guid>> DeleteDataType(int id);
+		Task<Response<int>> CreateDataType(DataTypeVM dataType);
+		Task<Response<int>> UpdateDataType(int id, DataTypeVM dataType);
+		Task<Response<int>> DeleteDataType(int id);
 	}
 }

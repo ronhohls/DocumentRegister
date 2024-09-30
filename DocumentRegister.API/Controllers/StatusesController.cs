@@ -1,4 +1,5 @@
-﻿using DocumentRegister.Application.Features.Status.Commands.CreateStatus;
+﻿using DocumentRegister.API.Responses;
+using DocumentRegister.Application.Features.Status.Commands.CreateStatus;
 using DocumentRegister.Application.Features.Status.Commands.DeleteStatus;
 using DocumentRegister.Application.Features.Status.Commands.UpdateStatus;
 using DocumentRegister.Application.Features.Status.Queries.GetStatusDetails;
@@ -6,7 +7,6 @@ using DocumentRegister.Application.Features.Status.Queries.GetStatuses;
 using DocumentRegister.Core.DTOs.Status;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DocumentRegister.API.Controllers
@@ -47,7 +47,6 @@ namespace DocumentRegister.API.Controllers
         }
 
         // PUT: api/Statuses/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(400)]
@@ -60,12 +59,15 @@ namespace DocumentRegister.API.Controllers
         }
 
         // POST: api/Statuses
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult> PostStatus(CreateStatusCommand status)
+        public async Task<ActionResult<Response<int>>> PostStatus([FromBody] CreateStatusCommand status)
         {
-            var response = await _mediator.Send(status);
-            //return CreatedAtAction(nameof(GetStatus) , new { id = response });
+            var statusId = await _mediator.Send(status);
+            var response = new Response<int>
+            {
+                Success = true,
+                Data = statusId
+            };
             return Ok(response);
         }
 

@@ -1,6 +1,4 @@
 ﻿using DocumentRegister.Application.Contracts.Persistence;
-using DocumentRegister.Application.Features.DataType.Commands.CreateDataType;
-using DocumentRegister.Application.Features.DataType.Commands.DeleteDataType;
 using FluentValidation;
 
 namespace DocumentRegister.Application.Features.DataType.Commands.CreateDataType

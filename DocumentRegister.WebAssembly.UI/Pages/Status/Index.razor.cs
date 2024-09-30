@@ -1,6 +1,7 @@
 ﻿using Blazored.Toast.Services;
 using DocumentRegister.WebAssembly.UI.Contracts;
 using DocumentRegister.WebAssembly.UI.Models.Status;
+using DocumentRegister.WebAssembly.UI.Services;
 using Microsoft.AspNetCore.Components;
 
 namespace DocumentRegister.WebAssembly.UI.Pages.Status
@@ -8,36 +9,34 @@ namespace DocumentRegister.WebAssembly.UI.Pages.Status
     public partial class Index
     {
         [Inject]
-        public NavigationManager NavigationManager { get; set; }
+        public NavigationManager navigationManager { get; set; }
 
         [Inject]
-        public IStatusService StatusService { get; set; }
+        public IStatusService statusService { get; set; }
 
         [Inject]
         IToastService toastService { get; set; }
 		public List<StatusVM> statuses { get; private set; }
-        public string Message { get; set; } = string.Empty;
+        public string message { get; set; } = string.Empty;
 
         protected void CreateStatus()
         {
-            Console.WriteLine("CreateStatus");
-            NavigationManager.NavigateTo("/statuses/create/");
+            navigationManager.NavigateTo("/statuses/create/");
         }
 
         protected void EditStatus(int id)
         {
-            NavigationManager.NavigateTo($"/statuses/edit/{id}");
+            navigationManager.NavigateTo($"/statuses/edit/{id}");
         }
 
         protected void DetailsStatus(int id)
         {
-            System.Console.WriteLine("details");
-			NavigationManager.NavigateTo($"/statuses/details/{id}");
+			navigationManager.NavigateTo($"/statuses/details/{id}");
         }
 
         protected async Task DeleteStatus(int id)
         {
-            var response = await StatusService.DeleteStatus(id);
+            var response = await statusService.DeleteStatus(id);
             if (response.Success)
             {
                 toastService.ShowSuccess("Status deleted Successfully");
@@ -45,14 +44,22 @@ namespace DocumentRegister.WebAssembly.UI.Pages.Status
             }
             else
             {
-                Message = response.Message;
+                message = response.Message;
+                toastService.ShowError(message);
             }
         }
 
         protected override async Task OnInitializedAsync()
         {
-            statuses = await StatusService.GetStatuses();
-			System.Console.WriteLine("on initialized");
-		}
+            try
+            {
+                statuses = await statusService.GetStatuses();
+            }
+            catch (Exception ex)
+            {
+                message = $"Error fetching data: {ex.Message}";
+                toastService.ShowError(message);
+            }
+        }
     }
 }

@@ -3,6 +3,6 @@
 	public class MediaTypeDetailsDto
 	{
         public int MediaTypeId { get; set; }
-		string Description { get; set; }
+		public string Description { get; set; }
     }
 }

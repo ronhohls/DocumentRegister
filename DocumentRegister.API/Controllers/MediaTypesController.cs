@@ -1,4 +1,5 @@
-﻿using DocumentRegister.Application.Features.MediaType.Commands.CreateMediaType;
+﻿using DocumentRegister.API.Responses;
+using DocumentRegister.Application.Features.MediaType.Commands.CreateMediaType;
 using DocumentRegister.Application.Features.MediaType.Commands.DeleteMediaType;
 using DocumentRegister.Application.Features.MediaType.Commands.UpdateMediaType;
 using DocumentRegister.Application.Features.MediaType.Queries.GetMediaTypeDetails;
@@ -6,7 +7,6 @@ using DocumentRegister.Application.Features.MediaType.Queries.GetMediaTypes;
 using DocumentRegister.Core.DTOs.MediaType;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DocumentRegister.API.Controllers
@@ -36,18 +36,10 @@ namespace DocumentRegister.API.Controllers
         public async Task<ActionResult<MediaTypeDetailsDto>> GetMediaType(int id)
         {
             var dataType = await _mediator.Send(new GetMediaTypeDetailsQuery(id));
-
-            if (dataType == null)
-            {
-                return NotFound();
-
-            }
-
             return Ok(dataType);
         }
 
         // PUT: api/MediaTypes/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(400)]
@@ -60,12 +52,15 @@ namespace DocumentRegister.API.Controllers
         }
 
         // POST: api/MediaTypes
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult> PostMediaType(CreateMediaTypeCommand dataType)
+        public async Task<ActionResult<Response<int>>> PostMediaType(CreateMediaTypeCommand mediaType)
         {
-            var response = await _mediator.Send(dataType);
-            //return CreatedAtAction(nameof(GetMediaType) , new { id = response });
+            var mediaTypeId = await _mediator.Send(mediaType);
+            var response = new Response<int>
+            {
+                Success = true,
+                Data = mediaTypeId
+            };
             return Ok(response);
         }
 

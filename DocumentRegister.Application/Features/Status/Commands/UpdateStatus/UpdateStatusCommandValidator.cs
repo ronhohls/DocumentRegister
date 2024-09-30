@@ -13,7 +13,6 @@ namespace DocumentRegister.Application.Features.Status.Commands.UpdateStatus
 			RuleFor(p => p.Description)
 				.NotEmpty().WithMessage("{propertyName} is required")
 				.MaximumLength(100).WithMessage("{propertyName} must be fewer than 100 characters");
-
 		}
     }
 }

@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-
 namespace DocumentRegister.Infrastructure.Persistence.Context
 {
 	public class DocumentRegisterDbContextFactory : IDesignTimeDbContextFactory<DocumentRegisterDbContext>

@@ -1,11 +1,6 @@
 ﻿using DocumentRegister.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DocumentRegister.Infrastructure.Persistence.Configurations
 {
@@ -17,12 +12,25 @@ namespace DocumentRegister.Infrastructure.Persistence.Configurations
 				new DataType
 				{
 					DataTypeId = 1,
-					Name = "TestValue",
+					Name = "String",
 					DateCreated = DateTime.Now,
 					DateModified = DateTime.Now
-				}
-			);
-
+				},
+                new DataType
+                {
+                    DataTypeId = 2,
+                    Name = "Number",
+                    DateCreated = DateTime.Now,
+                    DateModified = DateTime.Now
+                },
+                new DataType
+                {
+                    DataTypeId = 3,
+                    Name = "Currency",
+                    DateCreated = DateTime.Now,
+                    DateModified = DateTime.Now
+                }
+            );
 		}
 	}
 }

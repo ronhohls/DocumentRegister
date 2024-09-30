@@ -3,7 +3,6 @@ using DocumentRegister.Application.Contracts.Persistence;
 using DocumentRegister.Application.Exceptions;
 using MediatR;
 
-
 namespace DocumentRegister.Application.Features.Status.Commands.UpdateStatus
 { 
     public class UpdateStatusCommandHandler : IRequestHandler<UpdateStatusCommand, Unit>

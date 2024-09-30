@@ -3,7 +3,6 @@ using DocumentRegister.Application.Contracts.Persistence;
 using DocumentRegister.Core.DTOs.Status;
 using MediatR;
 
-
 namespace DocumentRegister.Application.Features.Status.Queries.GetStatuses
 {
     public class GetStatusesQueryHandler : IRequestHandler<GetStatusesQuery, List<StatusesDto>>

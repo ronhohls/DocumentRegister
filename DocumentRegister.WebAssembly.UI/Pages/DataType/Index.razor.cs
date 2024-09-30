@@ -2,43 +2,42 @@
 using DocumentRegister.WebAssembly.UI.Contracts;
 using DocumentRegister.WebAssembly.UI.Models.DataType;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
 
 namespace DocumentRegister.WebAssembly.UI.Pages.DataType
 {
     public partial class Index
     {
         [Inject]
-        public NavigationManager NavigationManager { get; set; }
+        public NavigationManager navigationManager { get; set; }
 
         [Inject]
-        public IDataTypeService DataTypeService { get; set; }
+        public IDataTypeService dataTypeService { get; set; }
 
         [Inject]
         IToastService toastService { get; set; }
         [Inject]
-        ILogger<Index> Logger { get; set; }
-		public List<DataTypeVM> DataTypes { get; private set; }
-        public string Message { get; set; } = string.Empty;
+        ILogger<Index> logger { get; set; }
+		public List<DataTypeVM> dataTypes { get; private set; }
+        public string message { get; set; } = string.Empty;
 
         protected void CreateDataType()
         {
-            NavigationManager.NavigateTo("/datatypes/create/");
+            navigationManager.NavigateTo("/datatypes/create/");
         }
 
         protected void EditDataType(int id)
         {
-            NavigationManager.NavigateTo($"/datatypes/edit/{id}");
+            navigationManager.NavigateTo($"/datatypes/edit/{id}");
         }
 
         protected void DetailsDataType(int id)
         {
-			NavigationManager.NavigateTo($"/datatypes/details/{id}");
+			navigationManager.NavigateTo($"/datatypes/details/{id}");
         }
 
         protected async Task DeleteDataType(int id)
         {
-            var response = await DataTypeService.DeleteDataType(id);
+            var response = await dataTypeService.DeleteDataType(id);
             if (response.Success)
             {
                 toastService.ShowSuccess("Data Type deleted Successfully");
@@ -46,13 +45,22 @@ namespace DocumentRegister.WebAssembly.UI.Pages.DataType
             }
             else
             {
-                Message = response.Message;
+                message = response.Message;
+                toastService.ShowError(message);
             }
         }
 
         protected override async Task OnInitializedAsync()
         {
-            DataTypes = await DataTypeService.GetDataTypes();
-		}
+            try
+            {
+                dataTypes = await dataTypeService.GetDataTypes();
+            }
+            catch (Exception ex)
+            {
+                message = $"Error fetching data: {ex.Message}";
+                toastService.ShowError(message);
+            }
+        }
     }
 }

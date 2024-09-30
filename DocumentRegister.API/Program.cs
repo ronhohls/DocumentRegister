@@ -1,27 +1,26 @@
-using DocumentRegister.Core.Entities;
 using DocumentRegister.Infrastructure;
 using DocumentRegister.Infrastructure.Identity;
 using DocumentRegister.Application;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using Serilog;
-using System.Text;
+using DocumentRegister.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //logging service with seq
-builder.Host.UseSerilog((host, loggingConfig) =>
-	loggingConfig.WriteTo.Console()
-	.ReadFrom.Configuration(host.Configuration));
-
-//var connectionString = builder.Configuration.GetConnectionString("DocumentRegisterAppConnection");
+builder.Host.UseSerilog((host, loggingConfig) => loggingConfig
+    .WriteTo.Console()
+	.ReadFrom.Configuration(host.Configuration)); 
 
 // Add services to the container.
 builder.Services.AddApplicationServices();
 builder.Services.AddDatabaseServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+	.AddJsonOptions(options =>
+	{
+		options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+	});
 
 //Cors port restrictions
 builder.Services.AddCors(options =>
@@ -38,6 +37,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

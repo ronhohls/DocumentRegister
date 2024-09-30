@@ -6,44 +6,44 @@
     <a href="/mediatypes/create" class="btn btn-success">Create</a>
 </div>
 
-@if (string.IsNullOrEmpty(Message) == false)
+@if (string.IsNullOrEmpty(message) == false)
 {
     <div class="alert alert-danger">
-        @Message
+        @message
     </div>
 }
 
-<div clas></div>
-@if (MediaTypes == null)
-{
-    <p>Loading Data...</p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var mediaType in MediaTypes)
-            {
+<div>
+    @if (mediaTypes == null)
+    {
+        <p>Loading Data...</p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>@mediaType.MediaTypeId </td>
-                    <td>@mediaType.Description </td>
-                    <td>
-                        <AuthorizeView Roles="Administrator">
-                            <button @onclick="@(() => EditMediaType(mediaType.MediaTypeId))" class="btn btn-warning">Edit</button>
-                            <button @onclick="@(() => DeleteMediaType(mediaType.MediaTypeId))" class="btn btn-danger">Delete</button>
-                        </AuthorizeView>
-                        <button @onclick="@(() => DetailsMediaType(mediaType.MediaTypeId))" class="btn btn-info">Details</button>
-                    </td>
+                    <th>Id</th>
+                    <th>Description</th>
+                    <th>Actions</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-
-}
+            </thead>
+            <tbody>
+                @foreach (var mediaType in mediaTypes)
+                {
+                    <tr>
+                        <td>@mediaType.MediaTypeId </td>
+                        <td>@mediaType.Description </td>
+                        <td>
+                            <AuthorizeView Roles="Administrator">
+                                <button @onclick="@(() => EditMediaType(mediaType.MediaTypeId))" class="btn btn-warning">Edit</button>
+                                <button @onclick="@(() => DeleteMediaType(mediaType.MediaTypeId))" class="btn btn-danger">Delete</button>
+                            </AuthorizeView>
+                            <button @onclick="@(() => DetailsMediaType(mediaType.MediaTypeId))" class="btn btn-info">Details</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

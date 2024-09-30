@@ -1,13 +1,7 @@
 ﻿using AutoMapper;
 using DocumentRegister.Application.Contracts.Persistence;
 using DocumentRegister.Application.Exceptions;
-using DocumentRegister.Application.Features.MediaType.Commands.DeleteMediaType;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DocumentRegister.Application.Features.MediaType.Commands.CreateMediaType
 {

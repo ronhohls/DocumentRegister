@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DocumentRegister.Core.Entities.Common
 {
+	[NotMapped]
 	public abstract class BaseEntity
 	{
 		public DateTime? DateCreated {  get; set; }

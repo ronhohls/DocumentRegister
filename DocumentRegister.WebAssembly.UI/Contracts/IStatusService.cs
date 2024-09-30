@@ -7,8 +7,8 @@ namespace DocumentRegister.WebAssembly.UI.Contracts
     {
         Task<List<StatusVM>> GetStatuses();
         Task<StatusVM> GetStatusById(int id);
-        Task<Response<Guid>> CreateStatus(StatusVM status);
-        Task<Response<Guid>> UpdateStatus(int id, StatusVM status);
-        Task<Response<Guid>> DeleteStatus(int id);
+        Task<Response<int>> CreateStatus(StatusVM status);
+        Task<Response<int>> UpdateStatus(int id, StatusVM status);
+        Task<Response<int>> DeleteStatus(int id);
     }
 }

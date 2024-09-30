@@ -13,7 +13,7 @@ namespace DocumentRegister.WebAssembly.UI.Pages.MediaType
 		IMediaTypeService mediaTypeService { get; set; }
 		[Inject]
 		IToastService toastService { get; set; }
-		public string Message { get; private set; }
+		public string message { get; private set; }
 		public MediaTypeVM mediaType { get; set; } = new MediaTypeVM();
 
 		async Task CreateMediaType()
@@ -22,13 +22,12 @@ namespace DocumentRegister.WebAssembly.UI.Pages.MediaType
 			if (response.Success)
 			{
 				toastService.ShowSuccess("Media Type created Successfully");
-				toastService.ShowToast(ToastLevel.Info, "Test");
 				navigationManager.NavigateTo("mediatypes");
-
 			}
 			else
 			{
-				Message = response.Message;
+				message = response.Message;
+				toastService.ShowError(message);
 			}
 		}
 	}

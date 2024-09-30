@@ -13,11 +13,11 @@ namespace DocumentRegister.WebAssembly.UI.Services.Base
             _localStorage = localStorage;
         }
 
-        protected Response<Guid> ConvertApiExceptions<Guid>(ApiException apiException)
+        protected Response<T> ConvertApiExceptions<T>(ApiException apiException)
         {
             if(apiException.StatusCode == 400)
             {
-                return new Response<Guid>() 
+                return new Response<T>() 
                 { 
                     Message = "Validation errors have occurred.",
                     ValidationErrors = apiException.Response,
@@ -26,7 +26,7 @@ namespace DocumentRegister.WebAssembly.UI.Services.Base
             }
             if (apiException.StatusCode == 404)
             {
-                return new Response<Guid>()
+                return new Response<T>()
                 {
                     Message = "The requested item has not been found",
                     Success = false
@@ -34,14 +34,14 @@ namespace DocumentRegister.WebAssembly.UI.Services.Base
             }
             if (apiException.StatusCode >= 200 &&  apiException.StatusCode <= 299)
             {
-				return new Response<Guid>()
+				return new Response<T>()
 				{
 					Message = "The Operation reported success",
 					Success = true
 				};
 
 			}
-            return new Response<Guid>()
+            return new Response<T>()
             {
                 Message = "Something went wrong, please try again",
                 Success = false

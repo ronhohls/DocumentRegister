@@ -14,54 +14,43 @@ namespace DocumentRegister.WebAssembly.UI.Services
 			_mapper = mapper;
 		}
 
-		public async Task<Response<Guid>> CreateDataType(DataTypeVM dataType)
+		public async Task<Response<int>> CreateDataType(DataTypeVM dataType)
 		{
 			try
 			{
 				await AddBearerToken();
 				var createDataTypeCommand = _mapper.Map<CreateDataTypeCommand>(dataType);
 				await _client.DataTypesPOSTAsync(createDataTypeCommand);
-				return new Response<Guid>()
+				return new Response<int>()
 				{
 					Success = true,
 				};
 			}
 			catch (ApiException ex)
 			{
-				return ConvertApiExceptions<Guid>(ex);
+				return ConvertApiExceptions<int>(ex);
 			}
 		}
 
-		public async Task<Response<Guid>> DeleteDataType(int id)
+		public async Task<Response<int>> DeleteDataType(int id)
 		{
             try
             {
                 await AddBearerToken();
                 await _client.DataTypesDELETEAsync(id);
-                return new Response<Guid>()
+                return new Response<int>()
                 {
                     Success = true,
                 };
             }
             catch (ApiException ex)
             {
-                return ConvertApiExceptions<Guid>(ex);
+                return ConvertApiExceptions<int>(ex);
             }
         }
 
 		public async Task<DataTypeVM> GetDataTypeById(int id)
 		{
-            //TODO: handle exceptions
-            //try
-            //{
-            //    await AddBearerToken();
-            //    var dataType = await _client.DataTypesGETAsync(id);
-            //    return _mapper.Map<DataTypeVM>(dataType);
-            //}
-            //catch (ApiException ex)
-            //{
-            //    return ConvertApiExceptions(ex);
-            //}
             await AddBearerToken();
             var dataType = await _client.DataTypesGETAsync(id);
             return _mapper.Map<DataTypeVM>(dataType);
@@ -69,24 +58,12 @@ namespace DocumentRegister.WebAssembly.UI.Services
 
 		public async Task<List<DataTypeVM>> GetDataTypes()
 		{
-            //TODO: handle exceptions
-            //try
-            //{
-            //             await AddBearerToken();
-            //             var dataTypes = await _client.DataTypesAllAsync();
-            //             return _mapper.Map<List<DataTypeVM>>(dataTypes);
-            //         }
-            //catch (ApiException ex)
-            //{
-            //             return ConvertApiExceptions<Guid>(ex);
-            //         }
-            await GetBearerToken();
-            //await AddBearerToken();
+            await AddBearerToken();
             var dataTypes = await _client.DataTypesAllAsync();
             return _mapper.Map<List<DataTypeVM>>(dataTypes);
         }
 
-		public async Task<Response<Guid>> UpdateDataType(int id, DataTypeVM dataType)
+		public async Task<Response<int>> UpdateDataType(int id, DataTypeVM dataType)
 		{
             try
             {
@@ -94,14 +71,14 @@ namespace DocumentRegister.WebAssembly.UI.Services
                 var updateDataTypeCommand = _mapper.Map<UpdateDataTypeCommand>(dataType);
                 updateDataTypeCommand.DataTypeId = id;
                 await _client.DataTypesPUTAsync(id.ToString(), updateDataTypeCommand);
-                return new Response<Guid>()
+                return new Response<int>()
                 {
                     Success = true,
                 };
             }
             catch (ApiException ex)
             {
-                return ConvertApiExceptions<Guid>(ex);
+                return ConvertApiExceptions<int>(ex);
             }
         }
 	}

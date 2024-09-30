@@ -1,11 +1,6 @@
 ﻿using DocumentRegister.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DocumentRegister.Infrastructure.Persistence.Configurations
 {
@@ -17,11 +12,25 @@ namespace DocumentRegister.Infrastructure.Persistence.Configurations
 				new MediaType
 				{
 					MediaTypeId = 1,
-					Description = "TestValue",
+					Description = "Hard copy",
 					DateCreated = DateTime.Now,
 					DateModified = DateTime.Now
-				}
-			);
+				},
+                new MediaType
+                {
+                    MediaTypeId = 2,
+                    Description = "Digital - local",
+                    DateCreated = DateTime.Now,
+                    DateModified = DateTime.Now
+                },
+                new MediaType
+                {
+                    MediaTypeId = 3,
+                    Description = "Digital - cloud",
+                    DateCreated = DateTime.Now,
+                    DateModified = DateTime.Now
+                }
+            );
 		}
 	}
 }

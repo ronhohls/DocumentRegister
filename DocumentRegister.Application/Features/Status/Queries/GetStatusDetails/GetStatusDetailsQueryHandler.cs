@@ -4,7 +4,6 @@ using DocumentRegister.Application.Exceptions;
 using DocumentRegister.Core.DTOs.Status;
 using MediatR;
 
-
 namespace DocumentRegister.Application.Features.Status.Queries.GetStatusDetails
 {
     public class GetStatusDetailsQueryHandler : IRequestHandler<GetStatusDetailsQuery, StatusDetailsDto>

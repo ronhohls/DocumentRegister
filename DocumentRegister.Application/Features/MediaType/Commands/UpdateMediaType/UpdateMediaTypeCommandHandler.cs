@@ -3,7 +3,6 @@ using DocumentRegister.Application.Contracts.Persistence;
 using DocumentRegister.Application.Exceptions;
 using MediatR;
 
-
 namespace DocumentRegister.Application.Features.MediaType.Commands.UpdateMediaType
 {
     public class UpdateMediaTypeCommandHandler : IRequestHandler<UpdateMediaTypeCommand, Unit>

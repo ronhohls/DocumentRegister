@@ -22,6 +22,11 @@ namespace DocumentRegister.Infrastructure
 			services.AddScoped<IDataTypeRepository, DataTypeRepository>();
 			services.AddScoped<IStatusRepository, StatusRepository>();
 			services.AddScoped<IMediaTypeRepository, MediaTypeRepository>();
+			services.AddScoped<ISegmentCategoryRepository, SegmentCategoryRepository>();
+			services.AddScoped<ISegmentDataRepository, SegmentDataRepository>();
+			services.AddScoped<IDeptDocNumStructRepository, DeptDocNumStructRepository>();
+            services.AddScoped<IDocumentRepository, DocumentRepository>();
+			services.AddScoped<IDocumentSegmentRepository, DocumentSegmentRepository>();
 
             return services;
 		}
