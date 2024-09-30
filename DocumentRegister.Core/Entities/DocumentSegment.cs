@@ -1,27 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DocumentRegister.Core.Entities.Common;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DocumentRegister.Core.Entities
 {
-    public class DocumentSegment
+    public partial class DocumentSegment : BaseEntity
     {
         [Key]
         public int DocumentSegmentId { get; set; }
 
-        [MaxLength(50), Display(Name = "Category Name")]
-        public required string CategoryName { get; set; }
+        [StringLength(100), Display(Name = "Category Name")]
+        public string CategoryName { get; set; } = null!;
 
-        [MaxLength(100), Display(Name = "Category Description")]
-        public required string CategoryDescription { get; set; }
+        [StringLength(250), Display(Name = "Category Description")]
+        public string CategoryDescription { get; set; } = null!;
 
-        [MaxLength(50)]
-        public required string Value { get; set; }
+        [StringLength(100)]
+        public string Value { get; set; } = null!;
 
-        [MaxLength(100), Display(Name = "Value Description")]
-        public required string ValueDescription { get; set; }
+        [StringLength(250), Display(Name = "Value Description")]
+        public string ValueDescription { get; set; } = null!;
+
+        public int DocumentId { get; set; }
+
+        [ForeignKey("DocumentId")]
+        public virtual Document Document { get; set; } = null!;
     }
 }

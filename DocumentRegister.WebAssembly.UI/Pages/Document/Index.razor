@@ -1,0 +1,79 @@
+﻿@page "/documents/"
+<h3>Documents</h3>
+
+<div class="m-2 d-flex justify-content-end">
+    <a href="/documents/create" class="btn btn-success">Create</a>
+</div>
+
+@if (string.IsNullOrEmpty(message) == false)
+{
+    <div class="alert alert-danger">
+        @message
+    </div>
+}
+
+<div>
+    @if (documents == null)
+    {
+        <p>Loading Data...</p>
+    }
+    else
+    {
+        <div class="table-responsive-lg">
+            <table class="table table-bordered table-hover table-sm">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Document Number</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">DDNS Description</th>
+                        <th scope="col">Seperator</th>
+                        <th scope="col">Document Segment 1</th>
+                        <th scope="col">Document Segment 2</th>
+                        <th scope="col">Document Segment 3</th>
+                        <th scope="col">Document Segment 4</th>
+                        <th scope="col">Document Segment 5</th>
+                        <th scope="col">Document Segment 6</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Media Type</th>
+                        <th scope="col">Revision</th>
+                        <th scope="col">Requested By</th>
+                        <th scope="col">Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var document in documents)
+                    {
+                        <tr>
+                            <th scope="row">@document.DocumentId </th>
+                            <td>@document.DocumentNumber </td>
+                            <td>@document.Description</td>
+                            <td>@document.DdnsDescription</td>
+                            <td>@document.Seperator</td>
+                            @foreach (var segment in document.DocumentSegments)
+                            {
+                                <td>@segment.Value</td>
+                            }
+                            @for (int i = 0; i < 6 - document.DocumentSegments.Count(); i++)
+                            {
+                                <td>N/A</td>
+                            }
+                            <td>@document.Status.Description</td>
+                            <td>@document.MediaType.Description</td>
+                            <td>@document.Revision</td>
+                            <td>@document.RequestedBy</td>
+                            <td>@document.Location</td>
+                            <td>
+                                <AuthorizeView Roles="Administrator">
+                                    <button @onclick="@(() => EditDocument(document.DocumentId))" class="btn btn-warning">Edit</button>
+                                    <button @onclick="@(() => DeleteDocument(document.DocumentId))" class="btn btn-danger">Delete</button>
+                                </AuthorizeView>
+                                <button @onclick="@(() => DetailsDocument(document.DocumentId))" class="btn btn-info">Details</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

@@ -1,0 +1,45 @@
+﻿@page "/documentsegments/"
+
+<h3>Document Segments</h3>
+
+@if (string.IsNullOrEmpty(message) == false)
+{
+    <div class="alert alert-danger">
+        @message
+    </div>
+}
+
+<div>
+    @if (documentSegments == null)
+    {
+        <p>Loading Data...</p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Document Id</th>
+                    <th>Category Name</th>
+                    <th>Category Description</th>
+                    <th>Value</th>
+                    <th>Value Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var documentSegment in documentSegments)
+                {
+                    <tr>
+                        <td>@documentSegment.DocumentSegmentId </td>
+                        <td>@documentSegment.DocumentId</td>
+                        <td>@documentSegment.CategoryName </td>
+                        <td>@documentSegment.CategoryDescription </td>
+                        <td>@documentSegment.Value </td>
+                        <td>@documentSegment.ValueDescription </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

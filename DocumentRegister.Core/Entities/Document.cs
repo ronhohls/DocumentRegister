@@ -1,56 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DocumentRegister.Core.Entities.Common;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DocumentRegister.Core.Entities
 {
-    public class Document
+    public partial class Document : BaseEntity
     {
         [Key]
         public int DocumentId { get; set; }
 
-        [MaxLength(100), Display(Name = "Document Number")]
-        public required string DocumentNumber { get; set; }
+        [StringLength(250)]
+        public string Description { get; set; } = null!;
 
-        [MaxLength(100)]
-        public required string Description { get; set; }
+        [Column("DDNSDescription")]
+        [StringLength(100), Display(Name = "Department Document Number Structure Description")]
+        public string DdnsDescription { get; set; } = null!;
 
-        [MaxLength(5)]
-        public required string Seperator { get; set; }
+        [StringLength(5)]
+        public string Seperator { get; set; } = null!;
 
-        [ForeignKey("DocumentSegment")]
-        public required int DocumentSegment1Id { get; set; }
-        public virtual DocumentSegment? DocumentSegment1 { get; set; }
+        public string DocumentNumber { get; set; } = null!;
 
-        [ForeignKey("DocumentSegment")]
-        public required int DocumentSegment2Id { get; set; }
-        public virtual DocumentSegment? DocumentSegment2 { get; set; }
+        //one-to-many relationship with DocumentSegment
+        public virtual ICollection<DocumentSegment> DocumentSegments { get; set; } = new List<DocumentSegment>();
 
-        [ForeignKey("DocumentSegment")]
-        public required int DocumentSegment3Id { get; set; }
-        public virtual DocumentSegment? DocumentSegment3 { get; set; }
 
-        [ForeignKey("DocumentSegment")]
-        public int DocumentSegment4Id { get; set; }
-        public virtual DocumentSegment? DocumentSegment4 { get; set; }
-
-        [ForeignKey("DocumentSegment")]
-        public int DocumentSegment5Id { get; set; }
-        public virtual DocumentSegment? DocumentSegment5 { get; set; }
-
-        [ForeignKey("DocumentSegment")]
-        public int DocumentSegment6Id { get; set; }
-        public virtual DocumentSegment? DocumentSegment6 { get; set; }
-
-        [ForeignKey("Status")]
+        //many-to-one relationship with Status
         public int StatusId { get; set; }
 
-        [ForeignKey("MediaType")]
+        [ForeignKey("StatusId")]
+        public virtual Status Status { get; set; } = null!;
+
+        //many-to-one relationship with MediaType
         public int MediaTypeId { get; set; }
+
+        [ForeignKey("MediaTypeId")]
+        public virtual MediaType MediaType { get; set; } = null!;
+
+        [StringLength(100)]
+        public string Revision { get; set; }
+
+        [StringLength(100)]
+        public string RequestedBy { get; set; }
+
+        public string Location { get; set; }
 
 
     }

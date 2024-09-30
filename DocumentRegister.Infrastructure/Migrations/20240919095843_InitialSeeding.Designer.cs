@@ -4,6 +4,7 @@ using DocumentRegister.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DocumentRegister.Infrastructure.Migrations
 {
     [DbContext(typeof(DocumentRegisterDbContext))]
-    partial class DocumentRegisterDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240919095843_InitialSeeding")]
+    partial class InitialSeeding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,28 +38,6 @@ namespace DocumentRegister.Infrastructure.Migrations
                     b.HasIndex("SegmentCategoriesSegmentCategoryId");
 
                     b.ToTable("DeptDocNumStructSegmentCategory");
-
-                    b.HasData(
-                        new
-                        {
-                            DeptDocNumStructsDeptDocNumStructId = 1,
-                            SegmentCategoriesSegmentCategoryId = 1
-                        },
-                        new
-                        {
-                            DeptDocNumStructsDeptDocNumStructId = 1,
-                            SegmentCategoriesSegmentCategoryId = 2
-                        },
-                        new
-                        {
-                            DeptDocNumStructsDeptDocNumStructId = 1,
-                            SegmentCategoriesSegmentCategoryId = 3
-                        },
-                        new
-                        {
-                            DeptDocNumStructsDeptDocNumStructId = 1,
-                            SegmentCategoriesSegmentCategoryId = 4
-                        });
                 });
 
             modelBuilder.Entity("DocumentRegister.Core.Entities.DataType", b =>
@@ -92,22 +73,22 @@ namespace DocumentRegister.Infrastructure.Migrations
                         new
                         {
                             DataTypeId = 1,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 110, DateTimeKind.Local).AddTicks(2838),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 110, DateTimeKind.Local).AddTicks(2854),
+                            DateCreated = new DateTime(2024, 9, 19, 11, 58, 43, 46, DateTimeKind.Local).AddTicks(2785),
+                            DateModified = new DateTime(2024, 9, 19, 11, 58, 43, 46, DateTimeKind.Local).AddTicks(2797),
                             Name = "String"
                         },
                         new
                         {
                             DataTypeId = 2,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 110, DateTimeKind.Local).AddTicks(2855),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 110, DateTimeKind.Local).AddTicks(2855),
+                            DateCreated = new DateTime(2024, 9, 19, 11, 58, 43, 46, DateTimeKind.Local).AddTicks(2798),
+                            DateModified = new DateTime(2024, 9, 19, 11, 58, 43, 46, DateTimeKind.Local).AddTicks(2799),
                             Name = "Number"
                         },
                         new
                         {
                             DataTypeId = 3,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 110, DateTimeKind.Local).AddTicks(2856),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 110, DateTimeKind.Local).AddTicks(2857),
+                            DateCreated = new DateTime(2024, 9, 19, 11, 58, 43, 46, DateTimeKind.Local).AddTicks(2800),
+                            DateModified = new DateTime(2024, 9, 19, 11, 58, 43, 46, DateTimeKind.Local).AddTicks(2800),
                             Name = "Currency"
                         });
                 });
@@ -145,16 +126,6 @@ namespace DocumentRegister.Infrastructure.Migrations
                     b.HasKey("DeptDocNumStructId");
 
                     b.ToTable("DeptDocNumStructs");
-
-                    b.HasData(
-                        new
-                        {
-                            DeptDocNumStructId = 1,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 111, DateTimeKind.Local).AddTicks(5362),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 111, DateTimeKind.Local).AddTicks(5373),
-                            Description = "Electronic Department",
-                            Seperator = "-----"
-                        });
                 });
 
             modelBuilder.Entity("DocumentRegister.Core.Entities.Document", b =>
@@ -296,8 +267,8 @@ namespace DocumentRegister.Infrastructure.Migrations
                             DocumentSegmentId = 1,
                             CategoryDescription = "Codes that define what project the document is part of",
                             CategoryName = "Project Code",
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 120, DateTimeKind.Local).AddTicks(1798),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 120, DateTimeKind.Local).AddTicks(1809),
+                            DateCreated = new DateTime(2024, 9, 19, 11, 58, 43, 52, DateTimeKind.Local).AddTicks(1659),
+                            DateModified = new DateTime(2024, 9, 19, 11, 58, 43, 52, DateTimeKind.Local).AddTicks(1670),
                             DocumentId = 1,
                             Value = "A554",
                             ValueDescription = "Oxygen sensor retrofitting"
@@ -307,8 +278,8 @@ namespace DocumentRegister.Infrastructure.Migrations
                             DocumentSegmentId = 2,
                             CategoryDescription = "Specifies the type of document",
                             CategoryName = "Document Type",
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 120, DateTimeKind.Local).AddTicks(1810),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 120, DateTimeKind.Local).AddTicks(1811),
+                            DateCreated = new DateTime(2024, 9, 19, 11, 58, 43, 52, DateTimeKind.Local).AddTicks(1671),
+                            DateModified = new DateTime(2024, 9, 19, 11, 58, 43, 52, DateTimeKind.Local).AddTicks(1672),
                             DocumentId = 1,
                             Value = "ELEC",
                             ValueDescription = "Electronic schematic"
@@ -318,8 +289,8 @@ namespace DocumentRegister.Infrastructure.Migrations
                             DocumentSegmentId = 3,
                             CategoryDescription = "Codes that define the customer they are related to",
                             CategoryName = "Customer code",
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 120, DateTimeKind.Local).AddTicks(1812),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 120, DateTimeKind.Local).AddTicks(1813),
+                            DateCreated = new DateTime(2024, 9, 19, 11, 58, 43, 52, DateTimeKind.Local).AddTicks(1673),
+                            DateModified = new DateTime(2024, 9, 19, 11, 58, 43, 52, DateTimeKind.Local).AddTicks(1674),
                             DocumentId = 1,
                             Value = "ANG",
                             ValueDescription = "Anglo Gold Ashanti"
@@ -329,8 +300,8 @@ namespace DocumentRegister.Infrastructure.Migrations
                             DocumentSegmentId = 4,
                             CategoryDescription = "Unique serial number for identifying individual documents",
                             CategoryName = "Sequence Number",
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 120, DateTimeKind.Local).AddTicks(1814),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 120, DateTimeKind.Local).AddTicks(1815),
+                            DateCreated = new DateTime(2024, 9, 19, 11, 58, 43, 52, DateTimeKind.Local).AddTicks(1676),
+                            DateModified = new DateTime(2024, 9, 19, 11, 58, 43, 52, DateTimeKind.Local).AddTicks(1676),
                             DocumentId = 1,
                             Value = "566",
                             ValueDescription = "Some info about seq number"
@@ -370,22 +341,22 @@ namespace DocumentRegister.Infrastructure.Migrations
                         new
                         {
                             MediaTypeId = 1,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 122, DateTimeKind.Local).AddTicks(202),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 122, DateTimeKind.Local).AddTicks(211),
+                            DateCreated = new DateTime(2024, 9, 19, 11, 58, 43, 54, DateTimeKind.Local).AddTicks(1340),
+                            DateModified = new DateTime(2024, 9, 19, 11, 58, 43, 54, DateTimeKind.Local).AddTicks(1350),
                             Description = "Hard copy"
                         },
                         new
                         {
                             MediaTypeId = 2,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 122, DateTimeKind.Local).AddTicks(212),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 122, DateTimeKind.Local).AddTicks(213),
+                            DateCreated = new DateTime(2024, 9, 19, 11, 58, 43, 54, DateTimeKind.Local).AddTicks(1351),
+                            DateModified = new DateTime(2024, 9, 19, 11, 58, 43, 54, DateTimeKind.Local).AddTicks(1352),
                             Description = "Digital - local"
                         },
                         new
                         {
                             MediaTypeId = 3,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 122, DateTimeKind.Local).AddTicks(214),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 122, DateTimeKind.Local).AddTicks(215),
+                            DateCreated = new DateTime(2024, 9, 19, 11, 58, 43, 54, DateTimeKind.Local).AddTicks(1353),
+                            DateModified = new DateTime(2024, 9, 19, 11, 58, 43, 54, DateTimeKind.Local).AddTicks(1354),
                             Description = "Digital - cloud"
                         });
                 });
@@ -437,8 +408,8 @@ namespace DocumentRegister.Infrastructure.Migrations
                         {
                             SegmentCategoryId = 1,
                             DataTypeId = 1,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 122, DateTimeKind.Local).AddTicks(2039),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 122, DateTimeKind.Local).AddTicks(2043),
+                            DateCreated = new DateTime(2024, 9, 19, 11, 58, 43, 57, DateTimeKind.Local).AddTicks(9119),
+                            DateModified = new DateTime(2024, 9, 19, 11, 58, 43, 57, DateTimeKind.Local).AddTicks(9134),
                             Description = "Codes that define what project the document is part of",
                             IsPredefined = true,
                             Name = "Project Code"
@@ -447,8 +418,8 @@ namespace DocumentRegister.Infrastructure.Migrations
                         {
                             SegmentCategoryId = 2,
                             DataTypeId = 1,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 122, DateTimeKind.Local).AddTicks(2044),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 122, DateTimeKind.Local).AddTicks(2045),
+                            DateCreated = new DateTime(2024, 9, 19, 11, 58, 43, 57, DateTimeKind.Local).AddTicks(9135),
+                            DateModified = new DateTime(2024, 9, 19, 11, 58, 43, 57, DateTimeKind.Local).AddTicks(9136),
                             Description = "Specifies the type of document",
                             IsPredefined = true,
                             Name = "Document Type"
@@ -457,8 +428,8 @@ namespace DocumentRegister.Infrastructure.Migrations
                         {
                             SegmentCategoryId = 3,
                             DataTypeId = 1,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 122, DateTimeKind.Local).AddTicks(2047),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 122, DateTimeKind.Local).AddTicks(2047),
+                            DateCreated = new DateTime(2024, 9, 19, 11, 58, 43, 57, DateTimeKind.Local).AddTicks(9137),
+                            DateModified = new DateTime(2024, 9, 19, 11, 58, 43, 57, DateTimeKind.Local).AddTicks(9138),
                             Description = "Codes that define the customer they are related to",
                             IsPredefined = true,
                             Name = "Customer code"
@@ -467,8 +438,8 @@ namespace DocumentRegister.Infrastructure.Migrations
                         {
                             SegmentCategoryId = 4,
                             DataTypeId = 2,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 122, DateTimeKind.Local).AddTicks(2049),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 122, DateTimeKind.Local).AddTicks(2049),
+                            DateCreated = new DateTime(2024, 9, 19, 11, 58, 43, 57, DateTimeKind.Local).AddTicks(9140),
+                            DateModified = new DateTime(2024, 9, 19, 11, 58, 43, 57, DateTimeKind.Local).AddTicks(9140),
                             Description = "Unique serial number for identifying individual documents",
                             IsPredefined = false,
                             Name = "Sequence Number"
@@ -513,98 +484,6 @@ namespace DocumentRegister.Infrastructure.Migrations
                     b.HasIndex("SegmentCategoryId");
 
                     b.ToTable("SegmentDatum");
-
-                    b.HasData(
-                        new
-                        {
-                            SegmentDataId = 1,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 124, DateTimeKind.Local).AddTicks(4873),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 124, DateTimeKind.Local).AddTicks(4883),
-                            Description = "Oxygen sensor retrofitting",
-                            SegmentCategoryId = 1,
-                            Value = "A554"
-                        },
-                        new
-                        {
-                            SegmentDataId = 2,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 124, DateTimeKind.Local).AddTicks(4884),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 124, DateTimeKind.Local).AddTicks(4885),
-                            Description = "Calibration of systems",
-                            SegmentCategoryId = 1,
-                            Value = "B336"
-                        },
-                        new
-                        {
-                            SegmentDataId = 3,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 124, DateTimeKind.Local).AddTicks(4886),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 124, DateTimeKind.Local).AddTicks(4887),
-                            Description = "Testing of new systems",
-                            SegmentCategoryId = 1,
-                            Value = "C123"
-                        },
-                        new
-                        {
-                            SegmentDataId = 4,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 124, DateTimeKind.Local).AddTicks(4888),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 124, DateTimeKind.Local).AddTicks(4889),
-                            Description = "Testing of new systems",
-                            SegmentCategoryId = 1,
-                            Value = "D789"
-                        },
-                        new
-                        {
-                            SegmentDataId = 5,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 124, DateTimeKind.Local).AddTicks(4890),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 124, DateTimeKind.Local).AddTicks(4891),
-                            Description = "Electronic schematic",
-                            SegmentCategoryId = 2,
-                            Value = "ELEC"
-                        },
-                        new
-                        {
-                            SegmentDataId = 6,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 124, DateTimeKind.Local).AddTicks(4892),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 124, DateTimeKind.Local).AddTicks(4892),
-                            Description = "Mechanical schematic",
-                            SegmentCategoryId = 2,
-                            Value = "MECH"
-                        },
-                        new
-                        {
-                            SegmentDataId = 7,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 124, DateTimeKind.Local).AddTicks(4894),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 124, DateTimeKind.Local).AddTicks(4894),
-                            Description = "Financial documents",
-                            SegmentCategoryId = 2,
-                            Value = "FIN"
-                        },
-                        new
-                        {
-                            SegmentDataId = 8,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 124, DateTimeKind.Local).AddTicks(4896),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 124, DateTimeKind.Local).AddTicks(4896),
-                            Description = "Anglo Gold Ashanti",
-                            SegmentCategoryId = 3,
-                            Value = "ANG"
-                        },
-                        new
-                        {
-                            SegmentDataId = 9,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 124, DateTimeKind.Local).AddTicks(4898),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 124, DateTimeKind.Local).AddTicks(4898),
-                            Description = "Sibanye",
-                            SegmentCategoryId = 3,
-                            Value = "SIB"
-                        },
-                        new
-                        {
-                            SegmentDataId = 10,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 124, DateTimeKind.Local).AddTicks(4899),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 124, DateTimeKind.Local).AddTicks(4900),
-                            Description = "Harmony Gold",
-                            SegmentCategoryId = 3,
-                            Value = "HAR"
-                        });
                 });
 
             modelBuilder.Entity("DocumentRegister.Core.Entities.Status", b =>
@@ -640,29 +519,29 @@ namespace DocumentRegister.Infrastructure.Migrations
                         new
                         {
                             StatusId = 1,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 126, DateTimeKind.Local).AddTicks(4258),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 126, DateTimeKind.Local).AddTicks(4268),
+                            DateCreated = new DateTime(2024, 9, 19, 11, 58, 43, 62, DateTimeKind.Local).AddTicks(634),
+                            DateModified = new DateTime(2024, 9, 19, 11, 58, 43, 62, DateTimeKind.Local).AddTicks(642),
                             Description = "Pending Approval"
                         },
                         new
                         {
                             StatusId = 2,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 126, DateTimeKind.Local).AddTicks(4269),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 126, DateTimeKind.Local).AddTicks(4269),
+                            DateCreated = new DateTime(2024, 9, 19, 11, 58, 43, 62, DateTimeKind.Local).AddTicks(643),
+                            DateModified = new DateTime(2024, 9, 19, 11, 58, 43, 62, DateTimeKind.Local).AddTicks(644),
                             Description = "Approved"
                         },
                         new
                         {
                             StatusId = 3,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 126, DateTimeKind.Local).AddTicks(4270),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 126, DateTimeKind.Local).AddTicks(4271),
+                            DateCreated = new DateTime(2024, 9, 19, 11, 58, 43, 62, DateTimeKind.Local).AddTicks(645),
+                            DateModified = new DateTime(2024, 9, 19, 11, 58, 43, 62, DateTimeKind.Local).AddTicks(645),
                             Description = "Deprecated"
                         },
                         new
                         {
                             StatusId = 4,
-                            DateCreated = new DateTime(2024, 9, 19, 13, 2, 40, 126, DateTimeKind.Local).AddTicks(4272),
-                            DateModified = new DateTime(2024, 9, 19, 13, 2, 40, 126, DateTimeKind.Local).AddTicks(4273),
+                            DateCreated = new DateTime(2024, 9, 19, 11, 58, 43, 62, DateTimeKind.Local).AddTicks(646),
+                            DateModified = new DateTime(2024, 9, 19, 11, 58, 43, 62, DateTimeKind.Local).AddTicks(647),
                             Description = "N/A"
                         });
                 });
