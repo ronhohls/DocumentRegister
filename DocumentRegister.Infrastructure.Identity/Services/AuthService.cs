@@ -55,7 +55,6 @@ namespace DocumentRegister.Infrastructure.Identity.Services
 			return response;
 		}
 
-
 		public async Task<RegistrationResponse> Register(RegistrationRequest request)
 		{
 			var user = new ApplicationUser

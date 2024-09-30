@@ -36,7 +36,6 @@ namespace DocumentRegister.WebAssembly.UI.Services.Authentication
             {
                 return false;
             }
-
         }
         public async Task Logout()
         {

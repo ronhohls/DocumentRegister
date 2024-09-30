@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-
 namespace DocumentRegister.Infrastructure.Identity.Configurations
 {
 	public class RoleConfiguration : IEntityTypeConfiguration<IdentityRole>

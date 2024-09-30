@@ -22,13 +22,10 @@ namespace DocumentRegister.WebAssembly.UI.Pages
 
         protected async Task HandleRegister()
         {
-
-            Message = "btn clicked";
             var result = await AuthenticationService.RegisterAsync(Model.FirstName, Model.LastName, Model.UserName, Model.Email, Model.Password);
             Message = result.ToString();
             if (result)
             {
-                Message = "result = true";
                 NavigationManager.NavigateTo("/login");
             }
             else
@@ -36,6 +33,5 @@ namespace DocumentRegister.WebAssembly.UI.Pages
                 Message = "Registration failed";
             }
         }
-
     }
 }

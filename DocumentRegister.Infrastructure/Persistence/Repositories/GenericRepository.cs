@@ -2,12 +2,7 @@
 using DocumentRegister.Core.Entities.Common;
 using DocumentRegister.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DocumentRegister.Infrastructure.Persistence.Repositories
 {
@@ -31,13 +26,13 @@ namespace DocumentRegister.Infrastructure.Persistence.Repositories
 			await _dbContext.SaveChangesAsync();
 		}
 
-		public async Task<IReadOnlyList<TEntity>> GetAllAsync()
+		public async Task<IEnumerable<TEntity>> GetAllAsync()
 		{
 			return await _dbContext.Set<TEntity>().AsNoTracking().ToListAsync();
 		}
 
 		//cannot make getbyid 
-		public async Task<TEntity> GetByIdAsync(object id)
+		public async Task<TEntity> GetByIdAsync(int id)
 		{
 			//TODO: handle null exceptions
 			var keyProperty = _dbContext.Model

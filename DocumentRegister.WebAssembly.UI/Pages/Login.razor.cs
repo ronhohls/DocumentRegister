@@ -33,6 +33,5 @@ namespace DocumentRegister.WebAssembly.UI.Pages
             }
             Message = "Username/password combination unknown";
         }
-
     }
 }
