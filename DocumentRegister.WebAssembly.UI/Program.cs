@@ -22,7 +22,7 @@ builder.Services.AddTransient<JwtAuthorizationMessageHandler>();
 var baseAddress = "https://localhost:7186";
 if (builder.HostEnvironment.IsProduction())
 {
-    baseAddress = "https://documentregisterapiapi.azure-api.net";
+    baseAddress = "https://documentregisterapi20241001114743.azurewebsites.net";
 }
 builder.Services.AddHttpClient<IClient, Client>(client => client.BaseAddress = new Uri(baseAddress))
 	.AddHttpMessageHandler<JwtAuthorizationMessageHandler>()
