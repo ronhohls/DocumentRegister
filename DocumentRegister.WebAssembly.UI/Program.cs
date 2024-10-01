@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using System.Reflection;
+using static System.Net.WebRequestMethods;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -18,7 +19,12 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddTransient<JwtAuthorizationMessageHandler>();
 
-builder.Services.AddHttpClient<IClient, Client>(client => client.BaseAddress = new Uri("https://localhost:7186"))
+var baseAddress = "https://localhost:7186";
+if (builder.HostEnvironment.IsProduction())
+{
+    baseAddress = "https://documentregisterapiapi.azure-api.net";
+}
+builder.Services.AddHttpClient<IClient, Client>(client => client.BaseAddress = new Uri(baseAddress))
 	.AddHttpMessageHandler<JwtAuthorizationMessageHandler>()
     .ConfigureHttpClient(client =>
     {
