@@ -2,7 +2,7 @@
 ## _Introduction_
 
 
-This project is Document Register application for an engineering firm. It allows each department to create their own document numbering structure. 
+This project is a Document Register application for an engineering firm. It allows each department to create their own document numbering structure. 
 Department employees can then issue and track documents. Different levels of employees are given different levels of permissions through 
 the EF Core Identity framework to Create/Edit/View documents and associated tables.
 
